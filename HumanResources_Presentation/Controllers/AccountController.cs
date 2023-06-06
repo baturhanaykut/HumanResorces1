@@ -21,7 +21,7 @@ namespace HumanResources_Presentation.Controllers
         private readonly IEmailService _emailService;
         private readonly UserManager<AppUser> _userManager;
 
-    //deneme
+    
         public AccountController(IAppUserService appUserService, IEmailService emailService, UserManager<AppUser> userManager)
         {
             _appUserService = appUserService;
