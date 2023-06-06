@@ -12,7 +12,7 @@ namespace HumanResources_Domain.Entities
         public int Id { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public decimal? LeaveDay { get; set; }
+        public string? LeaveDay { get; set; }
 
         /*public DateTime DateRequested { get; set; }*/ // izin istemenin yapildigi tarih
         public string RequestComments { get; set; }

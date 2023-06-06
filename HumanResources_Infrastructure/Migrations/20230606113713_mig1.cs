@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HumanResources_Infrastructure.Migrations
 {
-    public partial class miginit : Migration
+    public partial class mig1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -200,7 +200,7 @@ namespace HumanResources_Infrastructure.Migrations
                     BloodGroup = table.Column<int>(type: "int", nullable: true),
                     Gender = table.Column<int>(type: "int", nullable: true),
                     ExecutiveId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    ExecutiveStatus = table.Column<bool>(type: "bit", nullable: true),
+                    ExecutiveStatus = table.Column<bool>(type: "bit", nullable: false),
                     CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -490,12 +490,12 @@ namespace HumanResources_Infrastructure.Migrations
                 columns: new[] { "Id", "CityName", "CreateDate", "DeleteDate", "Status", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, "İstanbul", new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(5280), null, 1, null },
-                    { 2, "Ankara", new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(5295), null, 1, null },
-                    { 3, "Bursa", new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(5305), null, 1, null },
-                    { 4, "Tekirdağ", new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(5314), null, 1, null },
-                    { 5, "Antalya", new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(5324), null, 1, null },
-                    { 6, "İzmir", new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(5339), null, 1, null }
+                    { 1, "İstanbul", new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(6515), null, 1, null },
+                    { 2, "Ankara", new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(6518), null, 1, null },
+                    { 3, "Bursa", new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(6519), null, 1, null },
+                    { 4, "Tekirdağ", new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(6520), null, 1, null },
+                    { 5, "Antalya", new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(6521), null, 1, null },
+                    { 6, "İzmir", new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(6522), null, 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -503,23 +503,12 @@ namespace HumanResources_Infrastructure.Migrations
                 columns: new[] { "Id", "CreateDate", "DeleteDate", "Name", "Status", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 6, 6, 10, 35, 47, 665, DateTimeKind.Local).AddTicks(8593), null, "Human Resources", 1, null },
-                    { 2, new DateTime(2023, 6, 6, 10, 35, 47, 665, DateTimeKind.Local).AddTicks(8617), null, "Information Technologies", 1, null },
-                    { 3, new DateTime(2023, 6, 6, 10, 35, 47, 665, DateTimeKind.Local).AddTicks(8627), null, "Quality Assurance", 1, null },
-                    { 4, new DateTime(2023, 6, 6, 10, 35, 47, 665, DateTimeKind.Local).AddTicks(8637), null, "Accounting", 1, null },
-                    { 5, new DateTime(2023, 6, 6, 10, 35, 47, 665, DateTimeKind.Local).AddTicks(8651), null, "Quality Control", 1, null },
-                    { 6, new DateTime(2023, 6, 6, 10, 35, 47, 665, DateTimeKind.Local).AddTicks(8661), null, "Engineering", 1, null }
-                });
-
-            migrationBuilder.InsertData(
-                table: "ExpenseTypes",
-                columns: new[] { "Id", "CompanyId", "CreateDate", "DeleteDate", "ExpenseTypeName", "Status", "UpdateDate" },
-                values: new object[,]
-                {
-                    { 1, null, new DateTime(2023, 6, 6, 10, 35, 47, 668, DateTimeKind.Local).AddTicks(684), null, "Parking Expense", 1, null },
-                    { 2, null, new DateTime(2023, 6, 6, 10, 35, 47, 668, DateTimeKind.Local).AddTicks(699), null, "Food Expense", 1, null },
-                    { 3, null, new DateTime(2023, 6, 6, 10, 35, 47, 668, DateTimeKind.Local).AddTicks(709), null, "Clothes Expense", 1, null },
-                    { 4, null, new DateTime(2023, 6, 6, 10, 35, 47, 668, DateTimeKind.Local).AddTicks(718), null, "Stationary Expense", 1, null }
+                    { 1, new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(3862), null, "Human Resources", 1, null },
+                    { 2, new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(3870), null, "Information Technologies", 1, null },
+                    { 3, new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(3872), null, "Quality Assurance", 1, null },
+                    { 4, new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(3873), null, "Accounting", 1, null },
+                    { 5, new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(3874), null, "Quality Control", 1, null },
+                    { 6, new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(3875), null, "Engineering", 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -527,12 +516,12 @@ namespace HumanResources_Infrastructure.Migrations
                 columns: new[] { "Id", "CityId", "CreateDate", "DeleteDate", "DistrictName", "Status", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(7001), null, "Kadıköy", 1, null },
-                    { 2, 2, new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(7182), null, "Kızlay", 1, null },
-                    { 3, 3, new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(7192), null, "Merkez", 1, null },
-                    { 4, 4, new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(7206), null, "Namık Kemal", 1, null },
-                    { 5, 5, new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(7216), null, "Konya Altı", 1, null },
-                    { 6, 6, new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(7226), null, "Alsancak", 1, null }
+                    { 1, 1, new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(7127), null, "Kadıköy", 1, null },
+                    { 2, 2, new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(7129), null, "Kızlay", 1, null },
+                    { 3, 3, new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(7130), null, "Merkez", 1, null },
+                    { 4, 4, new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(7131), null, "Namık Kemal", 1, null },
+                    { 5, 5, new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(7133), null, "Konya Altı", 1, null },
+                    { 6, 6, new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(7134), null, "Alsancak", 1, null }
                 });
 
             migrationBuilder.CreateIndex(

@@ -31,14 +31,10 @@
             <div class="header " style="background-color: #BDCDD6;">
 
                 <div class="header-left">
-                    @* <a href="index.html" class="logo">
-                <img src="~/media/image/HR.png" alt="Human Resources">
-                </a>*@
-
+                   
                     <a asp-area="CompanyManager" asp-controller="CompanyManager" asp-action="IndexGrid" asp-route-UserName="@User.Identity.Name" class="logo">
                         <img src="~/media/image/logo3.png" alt="Human Resources" width="70" height="70">
                     </a>
-
                     <a href="index.html" class="logo logo-small">
                         <img src="~/media/image/logo3.png" alt="Logo" width="30" height="30">
                     </a>
@@ -51,23 +47,14 @@
                         </span>
                     </a>
                 </div>
-
-
                 @*Header Search area*@
-
-
                 <div class="top-nav-search">
                     <form asp-action="Index" asp-controller="Search">
                         <input name="employeename" type="text" class="form-control" placeholder="Search Employee">
                         <button class="btn" type="submit" id="text"><i class="fa fa-search"></i></button>
-
                     </form>
                 </div>
-
-
-                <a class="mobile_btn" id="mobile_btn">
-                    <i class="fas fa-bars"></i>
-                </a>
+                
                 <ul class="nav user-menu">
 
                     @if (User.Identity.IsAuthenticated)
@@ -93,8 +80,6 @@
                 </ul>
             </div>
         </header>
-
-
     }
 
     @if (User.IsInRole("Employee"))

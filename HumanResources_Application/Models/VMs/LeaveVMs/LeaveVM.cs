@@ -21,7 +21,7 @@ namespace HumanResources_Application.Models.VMs.LeaveVMs
         public string? EndDate { get; set; }
 
         [DisplayName("Leave Day")]
-        public decimal? LeaveDay { get; set; }
+        public string? LeaveDay { get; set; }
 
         public string? RequestComments { get; set; }
 

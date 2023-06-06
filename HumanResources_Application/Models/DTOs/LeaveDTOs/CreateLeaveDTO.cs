@@ -21,7 +21,7 @@ namespace HumanResources_Application.Models.DTOs.LeaveDTOs
         public DateTime EndDate { get; set; }
 
         [Required(ErrorMessage = "Leave day area cannot be empty!")]
-        public decimal? LeaveDay { get; set; }
+        public string? LeaveDay { get; set; }
 
         [Required(ErrorMessage = "Comments field cannot be empty!")]
         [MaxLength(50)]

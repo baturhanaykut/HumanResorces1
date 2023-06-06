@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HumanResources_Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230606073548_miginit")]
-    partial class miginit
+    [Migration("20230606113713_mig1")]
+    partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -200,7 +200,7 @@ namespace HumanResources_Infrastructure.Migrations
                     b.Property<Guid?>("ExecutiveId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool?>("ExecutiveStatus")
+                    b.Property<bool>("ExecutiveStatus")
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
@@ -323,42 +323,42 @@ namespace HumanResources_Infrastructure.Migrations
                         {
                             Id = 1,
                             CityName = "İstanbul",
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(5280),
+                            CreateDate = new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(6515),
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
                             CityName = "Ankara",
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(5295),
+                            CreateDate = new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(6518),
                             Status = 1
                         },
                         new
                         {
                             Id = 3,
                             CityName = "Bursa",
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(5305),
+                            CreateDate = new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(6519),
                             Status = 1
                         },
                         new
                         {
                             Id = 4,
                             CityName = "Tekirdağ",
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(5314),
+                            CreateDate = new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(6520),
                             Status = 1
                         },
                         new
                         {
                             Id = 5,
                             CityName = "Antalya",
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(5324),
+                            CreateDate = new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(6521),
                             Status = 1
                         },
                         new
                         {
                             Id = 6,
                             CityName = "İzmir",
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(5339),
+                            CreateDate = new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(6522),
                             Status = 1
                         });
                 });
@@ -460,42 +460,42 @@ namespace HumanResources_Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 665, DateTimeKind.Local).AddTicks(8593),
+                            CreateDate = new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(3862),
                             Name = "Human Resources",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 665, DateTimeKind.Local).AddTicks(8617),
+                            CreateDate = new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(3870),
                             Name = "Information Technologies",
                             Status = 1
                         },
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 665, DateTimeKind.Local).AddTicks(8627),
+                            CreateDate = new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(3872),
                             Name = "Quality Assurance",
                             Status = 1
                         },
                         new
                         {
                             Id = 4,
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 665, DateTimeKind.Local).AddTicks(8637),
+                            CreateDate = new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(3873),
                             Name = "Accounting",
                             Status = 1
                         },
                         new
                         {
                             Id = 5,
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 665, DateTimeKind.Local).AddTicks(8651),
+                            CreateDate = new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(3874),
                             Name = "Quality Control",
                             Status = 1
                         },
                         new
                         {
                             Id = 6,
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 665, DateTimeKind.Local).AddTicks(8661),
+                            CreateDate = new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(3875),
                             Name = "Engineering",
                             Status = 1
                         });
@@ -538,7 +538,7 @@ namespace HumanResources_Infrastructure.Migrations
                         {
                             Id = 1,
                             CityId = 1,
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(7001),
+                            CreateDate = new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(7127),
                             DistrictName = "Kadıköy",
                             Status = 1
                         },
@@ -546,7 +546,7 @@ namespace HumanResources_Infrastructure.Migrations
                         {
                             Id = 2,
                             CityId = 2,
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(7182),
+                            CreateDate = new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(7129),
                             DistrictName = "Kızlay",
                             Status = 1
                         },
@@ -554,7 +554,7 @@ namespace HumanResources_Infrastructure.Migrations
                         {
                             Id = 3,
                             CityId = 3,
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(7192),
+                            CreateDate = new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(7130),
                             DistrictName = "Merkez",
                             Status = 1
                         },
@@ -562,7 +562,7 @@ namespace HumanResources_Infrastructure.Migrations
                         {
                             Id = 4,
                             CityId = 4,
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(7206),
+                            CreateDate = new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(7131),
                             DistrictName = "Namık Kemal",
                             Status = 1
                         },
@@ -570,7 +570,7 @@ namespace HumanResources_Infrastructure.Migrations
                         {
                             Id = 5,
                             CityId = 5,
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(7216),
+                            CreateDate = new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(7133),
                             DistrictName = "Konya Altı",
                             Status = 1
                         },
@@ -578,7 +578,7 @@ namespace HumanResources_Infrastructure.Migrations
                         {
                             Id = 6,
                             CityId = 6,
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 666, DateTimeKind.Local).AddTicks(7226),
+                            CreateDate = new DateTime(2023, 6, 6, 14, 37, 12, 857, DateTimeKind.Local).AddTicks(7134),
                             DistrictName = "Alsancak",
                             Status = 1
                         });
@@ -669,36 +669,6 @@ namespace HumanResources_Infrastructure.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("ExpenseTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 668, DateTimeKind.Local).AddTicks(684),
-                            ExpenseTypeName = "Parking Expense",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 668, DateTimeKind.Local).AddTicks(699),
-                            ExpenseTypeName = "Food Expense",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 668, DateTimeKind.Local).AddTicks(709),
-                            ExpenseTypeName = "Clothes Expense",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreateDate = new DateTime(2023, 6, 6, 10, 35, 47, 668, DateTimeKind.Local).AddTicks(718),
-                            ExpenseTypeName = "Stationary Expense",
-                            Status = 1
-                        });
                 });
 
             modelBuilder.Entity("HumanResources_Domain.Entities.LeaveAllocation", b =>
