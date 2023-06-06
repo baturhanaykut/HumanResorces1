@@ -1,0 +1,174 @@
+﻿@using HumanResources_Application.Models.VMs;
+@using HumanResources_Domain.Enums;
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+
+@model ViewModel;
+
+@{
+    Layout = "_LayoutEmployee";
+}
+
+
+<div class="content container-fluid ">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 col-12 mb-4 mt-4">
+            <div class="breadcrumb-path ">
+                <h3>Employees</h3>
+            </div>
+        @if ((ViewBag.Employee).ExecutiveStatus)
+        {
+            <div class="row mb-4 mt-4">
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card board1 fill1">
+                        <div class="card-body">
+                            <div class="card_widget_header">
+                                <label>Number Of Workers</label>
+                                <h4>@ViewBag.EmployeeCount</h4>
+
+                            </div>
+                            <div class="card_widget_img">
+                                <img src="~/media/image/dash1.png" alt="card-img" />
+                            </div>
+                        </div>
+                        <a asp-controller="Employee" asp-action="ListEmployees" class="small-box-footer text-center" style="color:#fffafa">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card board1 fill2">
+                        <div class="card-body">
+                            <div class="card_widget_header">
+                                <label>Awaiting Approval Expenses</label>
+                                <h4>@ViewBag.ExpenseCount</h4>
+                            </div>
+                            <div class="card_widget_img">
+                                <img src="~/media/image/expense.png" width="50" alt="card-img" />
+                            </div>
+                        </div>
+                        <a asp-area="Employee" asp-controller="EmployeeRequest" asp-action="Expense" class="small-box-footer text-center" style="color:#fffafa">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card board1 fill3">
+                        <div class="card-body">
+                            <div class="card_widget_header">
+                                <label>Awaiting Approval Leaves</label>
+                                <h4>@ViewBag.LeaveCount</h4>
+                            </div>
+                            <div class="card_widget_img">
+                                <img src="~/media/image/dash3.png" alt="card-img" />
+                            </div>
+                        </div>
+                        <a asp-controller="EmployeeRequest" asp-action="Leave" class="small-box-footer text-center" style="color:#fffafa">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-12">
+                    <div class="card board1 fill4">
+                        <div class="card-body">
+                            <div class="card_widget_header">
+                                <label>Awaiting Approval Advances</label>
+                                <h4>@ViewBag.AdvanceCount</h4>
+                            </div>
+                            <div class="card_widget_img">
+                                <img src="~/media/image/dash4.png" alt="card-img" />
+                            </div>
+                        </div>
+                        <a asp-controller="EmployeeRequest" asp-action="Advance" class="small-box-footer text-center" style="color:#fffafa">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        }
+        </div>
+
+
+
+        <div class="col-xl-12 col-sm-12 col-12">
+            <div class="card grid-views">
+                <div class="card-body">
+                    <div class="row">
+                        @foreach (var item in Model.Employee)
+                        {
+                            <div class="employee_grid col-xl-4 col-sm-12 col-12">
+                                <form>
+                                    <input type="hidden" asp-for="@item.Id" />
+                                    <input type="hidden" asp-for="@item.UserName" />
+                                    @if (String.IsNullOrEmpty(item.ImagePath))
+                                    {
+                                        <div class="widget-user-image">
+                                            <img class="img-thumbnail" src="@Url.Content("~/media/image/businessman.png")" alt="User Avatar" height="75" width="75">
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="widget-user-image">
+                                            <img class="img-thumbnail" src="@item.ImagePath" alt="User Avatar" height="75" width="75">
+                                        </div>
+                                    }
+                                    <h5>@item.FullName</h5>
+                                    <label>@item.Email</label>
+                                    <label>@item.PhoneNumber</label>
+                                    <label>@item.DepartmanName</label>
+                                    <label>@item.Title</label>
+                                </form>
+                            </div>
+                        }
+
+                    </div>
+                    <div class="pagination justify-content-end">
+                        @Html.PagedListPager((IPagedList) Model.Employee, page => Url.Action("Index", new {page = page,
+                        searchfor = @Context.Request.Query["searchfor"], searchby = @Context.Request.Query["searchby"]}),
+                        new X.PagedList.Web.Common.PagedListRenderOptions {
+                        LiElementClasses = new string[] {"page-item"},
+                        PageClasses = new string[] { "page-link" }
+                        })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section scripts {
+    <script>
+
+        $(function () {
+
+            $("#example1").DataTable({
+
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+
+                "buttons": ["excel", "pdf"]
+
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+        });
+
+        $(function () {
+
+            $("#example2").DataTable({
+
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+
+                "buttons": ["excel", "pdf"]
+
+            }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
+
+        });
+        $(function () {
+
+            $("#example3").DataTable({
+
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+
+                "buttons": ["excel", "pdf"]
+
+            }).buttons().container().appendTo('#example3_wrapper .col-md-6:eq(0)');
+
+        });
+
+    </script>
+
+}

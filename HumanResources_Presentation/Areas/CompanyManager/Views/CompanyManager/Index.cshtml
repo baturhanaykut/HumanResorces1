@@ -1,0 +1,186 @@
+﻿@using HumanResources_Application.Models.VMs.AppUserVMs;
+
+
+@model IEnumerable<EmployeeVM>
+
+@{
+    Layout = "_LayoutEmployee";
+    int index = 1;
+}
+
+<div class="content container-fluid">
+    <div class="row">
+
+        <div class="col-xl-12 col-sm-12 col-12">
+            <div class="breadcrumb-path mb-4 mt-4">
+                <ul class="breadcrumb">
+                    <h3>Employees</h3>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xl-12 col-sm-12 col-12 mb-4">
+            <div class="row">
+                <div class="col-xl-12 col-sm-8 col-12 ">
+                    <div class="row mb-4">
+                        <div class="col-xl-3 col-sm-6 col-6">
+                            <div class="card board1 fill1 ">
+                                <div class="card-body">
+                                    <div class="card_widget_header">
+                                        <label>Number Of Employees</label>
+                                        <h4>@Model.Count()</h4>
+                                    </div>
+                                    <div class="card_widget_img">
+                                        <img src="~/media/image/dash1.png" alt="card-img" />
+                                    </div>
+                                </div>
+                                <a asp-controller="CompanyManager" asp-action="Create" class="btn-add"><i data-feather="plus"></i> Add Person</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xl-12 col-sm-12 col-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <table class="display" id="example1">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>@Html.DisplayNameFor(x=>x.FullName)</th>
+                                <th>@Html.DisplayNameFor(x=>x.Email)</th>
+                                <th>@Html.DisplayNameFor(x=>x.DepartmanName)</th>
+                                <th>@Html.DisplayNameFor(x=>x.Title)</th>
+                                <th>@Html.DisplayNameFor(x=>x.PhoneNumber)</th>
+                                <th>@Html.DisplayNameFor(x=>x.StartWorkDate)</th>
+                                <th>@Html.DisplayNameFor(x=>x.Status)</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <input type="hidden" asp-for="@item.Id" />
+                                <input type="hidden" asp-for="@item.UserName" />
+                                <tr>
+                                    <td><label>@index</label></td>
+                                    <td><label>@item.FullName</label> </td>
+                                    <td><label>@item.Email </label></td>
+                                    <td><label>@item.DepartmanName </label></td>
+                                    <td><label>@item.Title </label></td>
+                                    <td><label>@item.PhoneNumber</label></td>
+                                    <td><label>@item.StartWorkDate</label></td>
+                                    <td><label>@item.Status</label></td>
+                                    <td>
+                                        <a asp-controller="CompanyManager" asp-action="EmployeeEdit" asp-route-UserName="@item.UserName"><button class="btn btn-warning">Edit<i data-feather="edit"></i></button></a>
+                                        <a class="" data-bs-toggle="modal" data-bs-target="#delete" data-bs-whatever="@item.Id">
+                                            <button class="btn btn-danger">Delete <i data-feather="trash-2"></i></button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                index++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="customize_popup">
+                    <div class="modal fade"
+                         id="delete"
+                         tabindex="-1"
+                         aria-labelledby="staticBackdropLabels1"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header text-centers border-0">
+                                    <h5 class="modal-title text-center" id="staticBackdropLabels1">
+                                        Are You Sure Want to Delete?
+                                    </h5>
+                                </div>
+                                <div class="modal-footer text-centers">
+
+                                    <form asp-action="Delete" asp-controller="CompanyManager">
+                                        <input id="deleteUserInput" class="deleteLeave" type="hidden" name="id" />
+                                        <button id="Delete" type="submit" class="btn btn-primary">Delete</button>
+                                        <a asp-controller="CompanyManager" asp-action="Index" type="button" class="btn btn-secondary btn-lg">Cancel</a>
+                                        @*<button id="Delete" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>*@
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        var exampleModal = document.getElementById('delete')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+
+            var button = event.relatedTarget
+
+            var recipient = button.getAttribute('data-bs-whatever')
+
+            document.getElementById("deleteUserInput").value = recipient;
+
+        })
+    </script>
+
+    <script>
+
+        $(function () {
+
+            $("#example1").DataTable({
+
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+
+
+                buttons: [
+                    {
+                        extend: 'excel',
+                        footer: true,
+                        exportOptions: {
+                            columns: [0, 1, 2, 3,4,5,6]
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        footer: false,
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6]
+                        }
+
+                    }
+                ]
+
+
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+            $('#example2').DataTable({
+
+                "paging": true,
+
+                "lengthChange": false,
+
+                "searching": false,
+
+                "ordering": true,
+
+                "info": true,
+
+                "autoWidth": false,
+
+                "responsive": true,
+
+            });
+
+        });
+
+    </script>
+
+}
+

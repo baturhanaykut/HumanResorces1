@@ -1,0 +1,92 @@
+﻿@using HumanResources_Application.Models.VMs.AppUserVMs;
+
+
+@model IEnumerable<EmployeeVM>
+
+@{
+    Layout = "_LayoutEmployee";
+    int index = 1;
+}
+
+<div class="content container-fluid mt-4">
+    <body>
+
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Employee Reports</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>@Html.DisplayNameFor(x=>x.FullName)</th>
+                            <th>@Html.DisplayNameFor(x=>x.Email)</th>
+                            <th>@Html.DisplayNameFor(x=>x.IdentityNumber)</th>
+                            <th>@Html.DisplayNameFor(x=>x.DepartmanName)</th>
+                            <th>@Html.DisplayNameFor(x=>x.Title)</th>
+                            <th>@Html.DisplayNameFor(x=>x.PhoneNumber)</th>
+                            <th>@Html.DisplayNameFor(x=>x.StartWorkDate)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><label>@index</label></td>
+                                <td><label>@item.FullName</label> </td>
+                                <td><label>@item.Email </label></td>
+                                <td><label>@item.IdentityNumber </label></td>
+                                <td><label>@item.DepartmanName </label></td>
+                                <td><label>@item.Title </label></td>
+                                <td><label>@item.PhoneNumber</label></td>
+                                <td><label>@item.StartWorkDate</label></td>
+                            </tr>
+                            index++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </body>
+</div>
+@section scripts {
+    <script>
+
+        $(function () {
+
+            $("#example1").DataTable({
+
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+
+                "buttons": ["excel", "pdf", "colvis"]
+
+                //"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+            $('#example2').DataTable({
+
+                "paging": true,
+
+                "lengthChange": false,
+
+                "searching": false,
+
+                "ordering": true,
+
+                "info": true,
+
+                "autoWidth": false,
+
+                "responsive": true,
+
+            });
+
+        });
+
+    </script>
+}

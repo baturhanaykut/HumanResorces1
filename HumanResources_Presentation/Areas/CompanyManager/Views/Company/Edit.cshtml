@@ -1,0 +1,172 @@
+﻿@model CompanyUpdateDTO
+
+@{
+    Layout = "_LayoutEmployee";
+}
+
+<div class="content container-fluid">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 col-12">
+            <div class="breadcrumb-path mb-4 mt-4">
+                <ul class="breadcrumb">
+                    <h3>Company Update</h3>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-xl-12 col-sm-12 col-12">
+            <div class="row">
+                <div class="col-xl-12 col-sm-12 col-12 d-flex">
+                    <div class="card card-lists flex-fill">
+                        <div class="card-header">
+                            <h2 class="card-titles">
+                                @Model.CompanyName
+                            </h2>
+
+                        </div>
+                        <form asp-controller="Company" asp-action="Edit" method="post" enctype="multipart/form-data">
+                            <input type="hidden" asp-for="Id" />
+                            <input type="hidden" asp-for="CreateDate"/>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-xl-6 col-sm-12 col-12 d-flex">
+                                        <div class="member-registor flex-fill">
+                                            <ul>
+                                                <li>
+                                                    <div class="col-xl-6 col-sm-12 col-12 mt-2">
+                                                        <label>@Html.DisplayNameFor(x=>x.Id)</label>
+                                                    </div>
+
+                                                    <div class="col-xl-6 col-sm-12 col-12">
+                                                        <input asp-for="Id" type="text" class="form-control" disabled />
+                                                    </div>
+                                                    <span asp-validation-for="Id" class="text-danger"></span>
+
+                                                </li>
+
+                                                <li>
+                                                    <div class="col-xl-6 col-sm-12 col-12 mt-2">
+                                                        <label>@Html.DisplayNameFor(x=>x.CompanyName)</label>
+                                                    </div>
+
+                                                    <div class="col-xl-6 col-sm-12 col-12">
+                                                        <input asp-for="CompanyName" type="text" class="form-control" />
+                                                    </div>
+                                                    <span asp-validation-for="CompanyName" class="text-danger"></span>
+                                                </li>
+
+                                                <li>
+                                                    <div class="col-xl-6 col-sm-12 col-12 mt-2">
+                                                        <label>@Html.DisplayNameFor(x=>x.CompanyEmail)</label>
+                                                    </div>
+
+                                                    <div class="col-xl-6 col-sm-12 col-12">
+                                                        <input asp-for="CompanyEmail" type="text" class="form-control" />
+                                                    </div>
+                                                    <span asp-validation-for="CompanyEmail" class="text-danger"></span>
+                                                </li>
+
+                                                <li>
+                                                    <div class="col-xl-6 col-sm-12 col-12 mt-2">
+                                                        <label>@Html.DisplayNameFor(x=>x.CompanyPhoneNumber)</label>
+                                                    </div>
+
+                                                    <div class="col-xl-6 col-sm-12 col-12">
+                                                        <input asp-for="CompanyPhoneNumber" type="text" class="form-control" />
+                                                    </div>
+                                                    <span asp-validation-for="CompanyPhoneNumber" class="text-danger"></span>
+                                                </li>
+
+                                                <li>
+                                                    <div class="col-xl-6 col-sm-12 col-12 mt-2">
+                                                        <label>@Html.DisplayNameFor(x=>x.TaxNo)</label>
+                                                    </div>
+
+                                                    <div class="col-xl-6 col-sm-12 col-12">
+                                                        <input asp-for="TaxNo" type="text" class="form-control" />
+                                                    </div>
+                                                    <span asp-validation-for="TaxNo" class="text-danger"></span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-sm-12 col-12 d-flex">
+                                        <div class="member-registor flex-fill">
+                                            <ul>
+                                                <li>
+                                                    <div class="col-xl-3 col-sm-12 col-12 mt-2">
+                                                        <label>@Html.DisplayNameFor(x=>x.Address)</label>
+                                                    </div>
+
+                                                    <div class="col-xl-9 col-sm-12 col-12">
+                                                        <input asp-for="Address" type="text" class="form-control" />
+                                                    </div>
+                                                    <span asp-validation-for="Address" class="text-danger"></span>
+
+                                                </li>
+
+                                                <li>
+                                                    <div class="col-xl-3 col-sm-12 col-12 mt-2">
+                                                        <label>@Html.DisplayNameFor(x=>x.City)</label>
+                                                    </div>
+
+                                                    <div class="col-xl-9 col-sm-12 col-12">
+                                                        <input asp-for="City" type="text" class="form-control" />
+                                                    </div>
+                                                    <span asp-validation-for="City" class="text-danger"></span>
+                                                </li>
+
+                                                <li>
+                                                    <div class="col-xl-3 col-sm-12 col-12 mt-2">
+                                                        <label>@Html.DisplayNameFor(x=>x.Country)</label>
+                                                    </div>
+
+                                                    <div class="col-xl-9 col-sm-12 col-12">
+                                                        <input asp-for="Country" type="text" class="form-control" />
+                                                    </div>
+                                                    <span asp-validation-for="Country" class="text-danger"></span>
+                                                </li>
+
+                                                <li>
+                                                    <div class="col-xl-3 col-sm-12 col-12 mt-2">
+                                                        <label>@Html.DisplayNameFor(x=>x.PostCode)</label>
+                                                    </div>
+
+                                                    <div class="col-xl-9 col-sm-12 col-12">
+                                                        <input asp-for="PostCode" type="text" class="form-control" />
+                                                    </div>
+                                                    <span asp-validation-for="PostCode" class="text-danger"></span>
+                                                </li>
+
+                                                <li>
+                                                    <div class="col-xl-3 col-sm-12 col-12 mt-2">
+                                                        <label>@Html.DisplayNameFor(x=>x.TaxOffice)</label>
+                                                    </div>
+
+                                                    <div class="col-xl-9 col-sm-12 col-12">
+                                                        <input asp-for="TaxOffice" type="text" class="form-control" />
+                                                    </div>
+                                                    <span asp-validation-for="TaxOffice" class="text-danger"></span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+
+                            <div class="row">
+                                <div class="col-xl-12 col-sm-12 col-12 ml-4">
+
+                                    <div class="btn-link my-3">
+                                        <input type="submit" class="btn btn-warning btn-rounded" value="Update Company Information" />
+                                        <a asp-controller="Company" asp-action="Index" class="btn btn-dark btn-rounded">Back to Company Page</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

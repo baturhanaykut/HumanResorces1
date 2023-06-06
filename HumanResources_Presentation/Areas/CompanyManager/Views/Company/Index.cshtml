@@ -1,0 +1,122 @@
+﻿@model CompanyUpdateDTO
+
+@{
+    Layout = "_LayoutEmployee";
+}
+
+<div class="content container-fluid ">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 col-12">
+            <div class="breadcrumb-path mb-4 mt-4">
+                <ul class="breadcrumb">
+                    <h3>Company</h3>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="col-xl-12 col-sm-12 col-12">
+            <div class="row">
+                <div class="col-xl-12 col-sm-12 col-12 d-flex">
+                    <div class="card card-lists flex-fill">
+                        <div class="card-header">
+                            <h2 class="card-titles">
+                                @Model.CompanyName
+                            </h2>
+
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-xl-5 col-sm-12 col-12 d-flex">
+                                    <div class="member-registor flex-fill">
+                                        <ul>
+                                            <li>
+                                                <label>@Html.DisplayNameFor(x=>x.Id)</label>
+                                                <span>
+                                                    @Model.Id
+                                                </span>
+                                            </li>
+
+                                            <li>
+                                                <label>@Html.DisplayNameFor(x=>x.CompanyName)</label>
+                                                <span>
+                                                   @Model.CompanyName
+                                                </span>
+                                            </li>
+
+                                            <li>
+                                                <label>@Html.DisplayNameFor(x=>x.CompanyEmail)</label>
+                                                <span>
+                                                    @Model.CompanyEmail
+                                                </span>
+                                            </li>
+
+                                            <li>
+                                                <label>@Html.DisplayNameFor(x=>x.CompanyPhoneNumber)</label>
+                                                <span>
+                                                    @Model.CompanyPhoneNumber
+                                                </span>
+                                            </li>
+
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-sm-12 col-12 d-flex">
+                                    <div class="member-address flex-fill">
+                                        <label>Address</label>
+                                        <span>
+                                            @Model.Address
+                                            <br />
+                                            @Model.PostCode
+                                            @Model.City
+                                           @Model.Country
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-sm-12 col-12 d-flex">
+                                    <div class="member-address flex-fill">
+                                        <div class="member-registor flex-fill">
+                                            <ul>
+
+                                                <li>
+                                                    <label>@Html.DisplayNameFor(x=>x.TaxNo)</label>
+                                                    <span>
+                                                        @Model.TaxNo
+                                                    </span>
+                                                </li>
+
+                                                <li>
+                                                    <label>@Html.DisplayNameFor(x=>x.TaxOffice)</label>
+                                                    <span>
+                                                        @Model.TaxOffice
+                                                    </span>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 col-sm-12 col-12 ml-4">
+                                
+                                    <div class="btn-link my-3">
+                                        <a asp-controller="Company" asp-action="Edit" asp-route-Id="@Model.Id" class="btn btn-new">
+                                            Edit Company Information  <i data-feather="edit"></i>
+                                        </a>
+
+                                    </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

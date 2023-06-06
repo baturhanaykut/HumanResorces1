@@ -1,0 +1,129 @@
+﻿@model UpdateExpenseDTO
+
+@{
+    Layout = "_LayoutEmployee";
+}
+
+
+<div class="content container-fluid">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 col-12">
+            <div class="breadcrumb-path mb-4">
+                <h3>Edit Expense</h3>
+            </div>
+        </div>
+
+        <div class="col-xl-12 col-sm-12 col-12">
+            <form asp-area="Employee" asp-controller="Expense" asp-action="ExpenseEdit" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="AppUserId" />
+                <input type="hidden" asp-for="ApproveStatus" />
+                <div class="card">
+
+                    <div class="card-body">
+
+                        <input asp-for="Id" type="hidden" />
+                        <div class="row">
+                            <div class="input-group mb-3">
+
+                                <div class="col-xl-6 col-sm-12 col-12">
+                                    <label asp-for="Explanation">Explanation</label>
+                                    <div class="form-group">
+                                        <input asp-for="Explanation" type="text" placeholder="Please enter your reason for requesting an expense..." />
+                                    </div>
+                                    <span asp-validation-for="Explanation" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="col-xl-6 col-sm-12 col-12">
+
+                                    <div class="form-group">
+                                        <label asp-for="ExpenseTypeId">Expense Type</label>
+                                        <select asp-for="ExpenseTypeId" class="custom-select" asp-items="@ViewBag.ExpenseTypes">
+                                            <option value="">Please Select A Expense Type </option>
+                                        </select>
+                                    </div>
+                                    <span asp-validation-for="ExpenseTypeId" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="col-xl-6 col-sm-12 col-12">
+                                    <label asp-for="ExpenseAmount">Expense Amount</label>
+                                    <div class="form-group input-group-prepend ">
+
+                                        <input asp-for="ExpenseAmount" type="text" class="form-control" aria-label="Expense (to the nearest dollar)" placeholder="Please enter the expense amount..." />
+                                        <span class="input-group-text">TL</span>
+
+                                    </div>
+                                    <span asp-validation-for="ExpenseAmount" class="text-danger"></span>
+                                </div>
+
+
+                                <input asp-for="Id" type="hidden" />
+                                <input asp-for="ExpenseDocument" type="hidden" />
+
+                                <div class="col-xl-6 col-sm-12 col-12">
+                                    <input type="hidden" asp-for="Id" />
+                                    @if (!String.IsNullOrEmpty(Model.ExpenseDocument))
+                                    {
+                                        <div class="form-group mt-3">
+                                            <label asp-for="UploadExpenseDocument">Expense Document</label>
+                                            <input asp-for="ExpenseDocument" type="file" class="form-control">
+                                        </div>
+                                        <span asp-validation-for="ExpenseDocument" class="text-danger"></span>
+                                    }
+                                    else
+                                    {
+                                        <div class="form-group mt-3">
+                                            <label asp-for="UploadExpenseDocument">Expense Document</label>
+                                            <input asp-for="UploadExpenseDocument" type="file" class="form-control" placeholder="Upload Expense Document">
+                                        </div>
+                                        <span asp-validation-for="UploadExpenseDocument" class="text-danger"></span>
+
+                                    }
+                                </div>
+
+
+                                <div class="col-xl-6 col-sm-12 col-12">
+                                    <div class="form-group mt-3">
+                                        <label asp-for="ExpenseDate">Expense Date</label>
+                                        <input asp-for="ExpenseDate" type="date" class="col-xl-12 col-sm-6 col-12 form-control" placeholder="Expense Date" />
+                                    </div>
+                                    <span asp-validation-for="ExpenseDate" class="text-danger"></span>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success w-auto">Update Expense</button>
+                <a asp-area="Employee" asp-controller="Expense" asp-action="ListExpense" class="btn btn-warning w-auto">Cancel</a>
+            </form>
+
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-sm-12 col-12">
+                <div class="form-btn">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts{
+
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
+
+
+

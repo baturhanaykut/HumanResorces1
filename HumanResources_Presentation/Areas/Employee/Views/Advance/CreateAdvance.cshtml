@@ -1,0 +1,90 @@
+﻿@model CreateAdvanceDTO
+
+@{
+    Layout = "_LayoutEmployee";
+}
+
+
+<div class="content container-fluid">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 col-12">
+            <div class="breadcrumb-path mb-4">
+                <h3>Create Advance</h3>
+            </div>
+        </div>
+
+        <div class="col-xl-12 col-sm-12 col-12">
+            <form asp-area="Employee" asp-controller="Advance" asp-action="CreateAdvance" method="post">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="input-group mb-3">
+
+                                <div class="col-xl-8 col-sm-12 col-12">
+                                    <label asp-for="Explanation">Explanation</label>
+                                    <div class="form-group">
+
+                                        <input asp-for="Explanation" type="text" placeholder="Please enter your reason for requesting an advance..." />
+                                    </div>
+                                    <span asp-validation-for="Explanation" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="col-xl-4 col-sm-12 col-12">
+                                    <label asp-for="AdvanceAmount">Amount</label>
+                                    <div class="form-group input-group-prepend ">
+
+                                        <input asp-for="AdvanceAmount" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Please enter the advance amount..." />
+                                        <span class="input-group-text">TL</span>
+                                        @* <div class="input-group-append">
+                                        <span class="input-group-text">.00</span>
+                                        </div>*@
+                                    </div>
+                                    <span asp-validation-for="AdvanceAmount" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="col-xl-3 col-sm-12 col-12">
+                                    <div class="form-group mt-3">
+                                        <label asp-for="PaymentDueDate">Payment Due Date</label>
+                                        <input asp-for="PaymentDueDate" type="date" class="col-xl-12 col-sm-6 col-12 form-control" placeholder="Payment Due Date" />
+                                    </div>
+                                    <span asp-validation-for="PaymentDueDate" class="text-danger"></span>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success w-auto">Add Advance</button>
+                <a asp-area="Employee" asp-controller="Advance" asp-action="ListAdvance" class="btn btn-warning w-auto">Cancel </a>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-sm-12 col-12">
+                <div class="form-btn">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+    <script>
+        $('form').submit(function () {
+            if ($(this).valid()) {
+                $(this).find(':submit').attr('disabled', 'disabled');
+            }
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

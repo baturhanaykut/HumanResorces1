@@ -1,0 +1,63 @@
+﻿@using HumanResources_Application.Models.DTOs.ExpenseTypeDTOs;
+
+@model CreateExpenseTypeDTO
+
+@{
+    Layout = "_LayoutEmployee";
+}
+
+
+<div class="content container-fluid">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 col-12">
+            <div class="breadcrumb-path mb-4">
+                <h3>Create Expense Type</h3>
+            </div>
+        </div>
+
+        <div class="col-xl-12 col-sm-12 col-12">
+            <form asp-area="CompanyManager" asp-controller="ExpenseType" asp-action="CreateExpenseType" method="post">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="input-group mb-3">
+
+                                <div class="col-xl-6 col-sm-12 col-12">
+                                    <label asp-for="ExpenseTypeName">Expense Type Name</label>
+                                    <div class="form-group">
+                                        <input asp-for="ExpenseTypeName" type="text" placeholder="Please enter expense type name..." />
+                                    </div>
+                                    <span asp-validation-for="ExpenseTypeName" class="text-danger"></span>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success w-auto">Add Expense Type</button>
+                <a asp-area="CompanyManager" asp-controller="ExpenseType" asp-action="ListExpenseType" class="btn btn-warning w-auto">Cancel </a>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-sm-12 col-12">
+                <div class="form-btn">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+    

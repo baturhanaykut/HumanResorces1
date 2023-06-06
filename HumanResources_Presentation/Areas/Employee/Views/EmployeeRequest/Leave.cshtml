@@ -1,0 +1,120 @@
+﻿@using HumanResources_Domain.Enums
+
+@model IEnumerable<LeaveVM>;
+
+@{
+    Layout = "_LayoutEmployee";
+}
+
+<body>
+
+
+    <div class="content container-fluid">
+        <div class="col-xl-12 col-sm-12 col-12">
+            <div class="breadcrumb-path mb-4 mt-4">
+                <ul class="breadcrumb">
+                    <h3>Employees Request</h3>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <ul></ul>
+        </div>
+
+        <div class="col-xl-12 col-sm-12 col-12 mb-4">
+            <div class="head-link-set">
+                <ul>
+                    <li><a href="Advance">Advances</a></li>
+                    <li><a href="Expense">Expenses</a></li>
+                    <li><a class="active" href="Leave">Leaves</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-xl-12 col-sm-12 col-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(x=>x.FullName)</th>
+                                <th>@Html.DisplayNameFor(x=>x.LeaveTypeName)</th>
+                                <th>@Html.DisplayNameFor(x=>x.LeaveDay)</th>
+                                <th>@Html.DisplayNameFor(x=>x.StartDate)</th>
+                                <th>@Html.DisplayNameFor(x=>x.EndDate)</th>
+                                <th>@Html.DisplayNameFor(x=>x.ApproveStatus)</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <input type="hidden" asp-for="@item.Id" />
+                                    <td><label>@item.FullName</label> </td>
+                                    <td><label>@item.LeaveTypeName </label></td>
+                                    <td><label>@item.LeaveDay </label></td>
+                                    <td><label>@item.StartDate </label></td>
+                                    <td><label>@item.EndDate</label></td>
+                                    <td><label>@item.ApproveStatus</label></td>
+                                    <td>
+                                        @if (item.ApproveStatus == ApproveStatus.InApproval)
+                                        {
+                                            <a asp-controller="EmployeeRequest" asp-action="AcceptLeave" asp-route-Id="@item.Id"><button class="btn btn-warning">Approve<i data-feather="edit"></i></button></a>
+
+                                            <a asp-controller="EmployeeRequest" asp-action="RejectLeave" asp-route-Id="@item.Id"><button class="btn btn-danger">Reject<i data-feather="edit"></i></button></a>
+                                        }
+
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+@section scripts {
+    <script>
+
+        $(function () {
+
+            $("#example1").DataTable({
+
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+
+                "buttons": ["excel", "pdf"]
+
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+            $('#example2').DataTable({
+
+                "paging": true,
+
+                "lengthChange": false,
+
+                "searching": false,
+
+                "ordering": true,
+
+                "info": true,
+
+                "autoWidth": false,
+
+                "responsive": true,
+
+            });
+
+        });
+
+    </script>
+}

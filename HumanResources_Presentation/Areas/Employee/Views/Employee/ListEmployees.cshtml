@@ -1,0 +1,70 @@
+﻿@using HumanResources_Application.Models.VMs.AppUserVMs;
+@model IEnumerable<EmployeeVM>
+
+@{
+    Layout = "_LayoutEmployee";
+}
+
+<div class="content container-fluid">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 col-12">
+            <div class="breadcrumb-path mb-4 mt-4">
+                <ul class="breadcrumb">
+                    <h3>Employees</h3>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-xl-12 col-sm-12 col-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <table class="display uk-table-hover uk-table-striped table-bordered" id="companytable">
+                        <thead>
+                            <tr>
+
+                                <th>@Html.DisplayNameFor(x=>x.FullName)</th>
+                                <th>@Html.DisplayNameFor(x=>x.Email)</th>
+                                <th>@Html.DisplayNameFor(x=>x.DepartmanName)</th>
+                                <th>@Html.DisplayNameFor(x=>x.ExecutiveName)</th>
+                                <th>@Html.DisplayNameFor(x=>x.Title)</th>
+                                <th>@Html.DisplayNameFor(x=>x.PhoneNumber)</th>
+                                <th>@Html.DisplayNameFor(x=>x.BirthDate)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <input type="hidden" asp-for="@item.Id" />
+                                <input type="hidden" asp-for="@item.UserName" />
+                                <tr>
+                                    <td><label>@item.FullName</label> </td>
+                                    <td><label>@item.Email </label></td>
+                                    <td><label>@item.DepartmanName </label></td>
+                                    <td><label>@item.ExecutiveName </label></td>
+                                    <td><label>@item.Title </label></td>
+                                    <td><label>@item.PhoneNumber</label></td>
+                                    <td><label>@item.BirthDate</label></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        let table = new DataTable('#companytable');
+    </script>
+
+}
+
+
+
+
+
+

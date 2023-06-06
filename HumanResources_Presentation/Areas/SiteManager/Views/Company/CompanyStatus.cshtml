@@ -1,0 +1,107 @@
+﻿@{
+    Layout = "_LayoutEmployee";
+    int index = 1;
+}
+
+@model IEnumerable<CompanyVM>
+
+<div class="content container-fluid">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 col-12">
+            <div class="breadcrumb-path mb-4 mt-4">
+                <ul class="breadcrumb">
+                    <h3>Company List</h3>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-xl-12 col-sm-12 col-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <table class="display uk-table-hover uk-table-striped table-bordered" id="example1">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>@Html.DisplayNameFor(x=>x.CompanyName)</th>
+                                <th>@Html.DisplayNameFor(x=>x.CompanyEmail)</th>
+                                <th>@Html.DisplayNameFor(x=>x.CompanyPhoneNumber)</th>
+                                <th>@Html.DisplayNameFor(x=>x.NumberOfEmployees)</th>
+                                <th>@Html.DisplayNameFor(x=>x.Status)</th>
+                                <th>Akitve or Passive</th>
+                                <th>Update Company</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <input type="hidden" asp-for="@item.Id" />
+                                    <td><label>@index</label></td>
+                                    <td><label>@item.CompanyName</label> </td>
+                                    <td><label>@item.CompanyEmail </label></td>
+                                    <td><label>@item.CompanyPhoneNumber </label></td>
+                                    <td><label>@item.NumberOfEmployees </label></td>
+                                    <td><label>@item.Status </label></td>
+                                    <td>
+                                        @if (item.Status == Status.AwatingApproval || item.Status == Status.Passive)
+                                        {
+                                            <a asp-area="SiteManager" asp-controller="Company" asp-action="AktiveCompany" asp-route-Id="@item.Id"><button class="btn btn-warning ">Aktive Company</button></a>
+                                        }
+                                        else 
+                                        {
+                                            <a asp-area="SiteManager" asp-controller="Company" asp-action="DeAktiveCompany" asp-route-Id="@item.Id"><button class="btn btn-warning">Passive Company</button></a>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a asp-controller="Company" asp-action="Update" asp-route-Id ="@item.Id" ><button class="btn btn-warning">Edit<i data-feather="edit"></i></button></a>
+                                    </td>
+                                </tr>
+                                index++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+   
+    <script>
+
+        $(function () {
+
+            $("#example1").DataTable({
+
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+
+                "buttons": ["excel", "pdf"]
+
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+            $('#example2').DataTable({
+
+                "paging": true,
+
+                "lengthChange": false,
+
+                "searching": false,
+
+                "ordering": true,
+
+                "info": true,
+
+                "autoWidth": false,
+
+                "responsive": true,
+
+            });
+
+        });
+
+    </script>
+}

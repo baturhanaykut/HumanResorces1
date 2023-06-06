@@ -1,0 +1,122 @@
+﻿@using HumanResources_Application.Models.VMs.AdvanceVMs
+@using HumanResources_Domain.Enums
+
+@model IEnumerable<AdvanceVM>;
+
+@{
+    Layout = "_LayoutEmployee";
+}
+
+<body>
+
+
+    <div class="content container-fluid">
+        <div class="col-xl-12 col-sm-12 col-12">
+            <div class="breadcrumb-path mb-4 mt-4">
+                <ul class="breadcrumb">
+                    <h3>Employees Request</h3>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <ul></ul>
+        </div>
+
+        <div class="col-xl-12 col-sm-12 col-12 mb-4">
+            <div class="head-link-set">
+                <ul>
+                    <li><a class="active" href="#">Advances</a></li>
+                    <li><a href="Expenses">Expenses</a></li>
+                    <li><a href="Leaves">Leaves</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-xl-12 col-sm-12 col-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(x=>x.FullName)</th>
+                                <th>@Html.DisplayNameFor(x=>x.Explanation)</th>
+                                <th>@Html.DisplayNameFor(x=>x.AdvanceAmount)</th>
+                                <th>@Html.DisplayNameFor(x=>x.PaymentDueDate)</th>
+                                <th>@Html.DisplayNameFor(x=>x.ExecutiveName)</th>
+                                <th>@Html.DisplayNameFor(x=>x.ApproveStatus)</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <input type="hidden" asp-for="@item.Id" />
+                                    <td><label>@item.FullName</label> </td>
+                                    <td><label>@item.Explanation </label></td>
+                                    <td><label>@item.AdvanceAmount </label></td>
+                                    <td><label>@item.PaymentDueDate</label></td>
+                                    <td><label>@item.ExecutiveName </label></td>
+                                    <td><label>@item.ApproveStatus</label></td>
+
+                                    <td>
+                                        @if (item.ApproveStatus == ApproveStatus.InApproval)
+                                        {
+                                            <a asp-controller="EmployeeRequest" asp-action="AcceptAdvance" asp-route-Id="@item.Id"><button class="btn btn-warning">Approve<i data-feather="edit"></i></button></a>
+
+                                            <a asp-controller="EmployeeRequest" asp-action="RejectAdvance" asp-route-Id="@item.Id"><button class="btn btn-danger">Reject<i data-feather="edit"></i></button></a>
+                                        }
+
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+@section scripts {
+    <script>
+
+        $(function () {
+
+            $("#example1").DataTable({
+
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+
+                "buttons": ["excel", "pdf"]
+
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+            $('#example2').DataTable({
+
+                "paging": true,
+
+                "lengthChange": false,
+
+                "searching": false,
+
+                "ordering": true,
+
+                "info": true,
+
+                "autoWidth": false,
+
+                "responsive": true,
+
+            });
+
+        });
+
+    </script>
+}

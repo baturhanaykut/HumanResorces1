@@ -1,0 +1,288 @@
+﻿@using HumanResources_Domain.Enums;
+
+@model UpdateProfileDTO
+
+@{
+    Layout = "_CompanyManagerLayout";
+}
+
+<div class="content container-fluid">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 col-12 ">
+            <div class="breadcrumb-path mb-4 mt-4 ">
+                <h3>Profile	@Model.FirstName  @Model.LastName</h3>
+            </div>
+        </div>
+        @*ToDo = Li'lerin asp-controlleri verilecek.*@
+        <div class="col-xl-12 col-sm-12 col-12 mb-4">
+            <div class="head-link-set">
+                <ul>
+                    <li><a href="profile.html">Employement</a></li>
+                    <li><a class="active" href="#">Detail</a></li>
+                    @*<li><a href="profile-document.html">Document</a></li>
+                    <li><a href="profile-payroll.html">Payroll</a></li>
+                    <li><a href="profile-timeoff.html">Timeoff</a></li>
+                    <li><a href="profile-review.html">Reviews</a></li>
+                    <li><a href="profile-setting.html">Settings</a></li>*@
+                </ul>
+            </div>
+        </div>
+        <div class="col-xl-12 col-sm-12 col-12 ">
+            <div class="row">
+                <div class="col-xl-6 col-sm-12 col-12 d-flex">
+                    <div class="card card-lists flex-fill">
+                        <div class="card-header">
+                            <h2 class="card-titles">General Information</h2>
+                            <ul>
+                                <li><a class="add-link" data-toggle="modal" data-target="#editinformation"><b>Edit</b></a></li>
+                                @*<li><a class="delete-link" data-toggle="modal" data-target="#delete"><i data-feather="trash-2"></i></a></li>*@
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="member-info">
+                                <ul>
+                                    <li>
+                                        <label>First Name </label>
+                                        <span>@Model.FirstName</span>
+                                    </li>
+                                    <li>
+                                        <label>Last Name </label>
+                                        <span>@Model.LastName</span>
+                                    </li>
+                                    <li>
+                                        <label>IdentityNumber </label>
+                                        <span>@Model.IdentityNumber</span>
+                                    </li>
+                                    @*ToDo: Value değeri ayarlanıcak*@
+                                    <li>
+                                        <label>Gender </label>
+                                        <span>@Model.Gender</span>
+                                    </li>
+                                    <li>
+                                        <label>Job </label>
+                                        <span>@Model.Job</span>
+                                    </li>
+                                    @*ToDo: Value değeri ayarlanıcak*@
+                                    <li>
+                                        <label>Title </label>
+                                        <span>@Model.Title</span>
+                                    </li>
+                                    @*ToDo: Value değeri ayarlanıcak*@
+                                    <li>
+                                        <label>Blood Group</label>
+                                        <span>@Model.BloodGroup</span>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-sm-12 col-12 d-flex">
+                    <div class="card card-lists flex-fill">
+                        <div class="card-header">
+                            <h2 class="card-titles">Contact Information</h2>
+                            <ul>
+                                <li><a class="add-link" data-toggle="modal" data-target="#editinformations"><b>Edit</b></a></li>
+                                @*<li><a class="delete-link" data-toggle="modal" data-target="#delete"><i data-feather="trash-2"></i></a></li>*@
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="member-info">
+                                <ul>
+                                    <li>
+                                        <label>Phone Number </label>
+                                        <span>@Model.PhoneNumber</span>
+                                    </li>
+                                    <li>
+                                        <label>Personal Email</label>
+                                        <span>@Model.Email</span>
+                                    </li>
+                                    <li>
+                                        <label>City </label>
+                                        <span>@Model.CityId</span>
+                                    </li>
+                                    <li>
+                                        <label>District </label>
+                                        <span>@Model.DistrictId</span>
+                                    </li>
+                                    <li>
+                                        <label>Adress </label>
+                                        <span>@Model.AddressDescription</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="customize_popup">
+        <div class="modal fade" id="editinformation" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Edit General Information</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form asp-controller="CompanyManager" asp-action="Edit" method="post" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="modal-body">
+                            <div class=" col-md-12 p-0">
+
+                                <div class=" form-popup">
+                                    <Label>First Name</Label>
+                                    <input asp-for="FirstName" type="text" placeholder="First Name">
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+                                <div class=" form-popup">
+
+                                    <Label>Last Name</Label>
+                                    <input asp-for="LastName" type="text" placeholder="Last Name">
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+                                <div class=" form-popup">
+
+                                    <Label>Identity Number</Label>
+                                    <input asp-for="IdentityNumber" type="text" placeholder="IdentityNumber ">
+                                    <span asp-validation-for="IdentityNumber" class="text-danger"></span>
+                                </div>
+                                <div class=" form-popup">
+                                    <Label>Gender Type</Label>
+                                    <select asp-for="Gender" asp-items="@Html.GetEnumSelectList<Gender>()">
+                                        <option selected="selected" value=""></option>
+                                    </select>
+                                </div>
+                                <div class=" form-popup">
+                                    <Label>Job</Label>
+                                    <input asp-for="Job" type="text" placeholder="Job">
+                                    <span asp-validation-for="Job" class="text-danger"></span>
+                                </div>
+                                <div class=" form-popup">
+                                    <Label>Title</Label>
+                                    <input asp-for="Title" type="text" placeholder="Title">
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+                                <div class=" form-popup">
+                                    <Label>Blood Group</Label>
+                                    <select asp-for="BloodGroup" asp-items="@Html.GetEnumSelectList<BloodGroup>()">
+                                        <option selected="selected" value=""></option>
+                                    </select>
+                                </div>
+
+                                <div class=" form-popup">
+                                    <input asp-for="PhoneNumber" type="hidden">
+                                </div>
+                                <div class=" form-popup">
+                                    <input asp-for="Email" type="hidden">
+                                </div>
+                                <div class=" form-popup">
+                                    <input asp-for="CityId" type="hidden">
+                                </div>
+                                <div class=" form-popup">
+                                    <input asp-for="DistrictId" type="hidden">
+                                </div>
+                                <div class=" form-popup">
+                                    <input asp-for="AddressDescription" type="hidden">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" value="Edit Profile">Update</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="customize_popup">
+        <div class="modal fade" id="editinformations" tabindex="-1" aria-labelledby="staticBackdropLabels" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabels">Edit Contact Information</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form asp-controller="CompanyManager" asp-action="Edit" method="post" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="modal-body">
+                            <div class=" col-md-12 p-0">
+
+                                <div class=" form-popup">
+                                    <Label>Phone Number</Label>
+                                    <input asp-for="PhoneNumber" type="text" placeholder="Phone Number">
+                                </div>
+                                <div class=" form-popup">
+                                    <Label>E-Mail</Label>
+                                    <input asp-for="Email" type="text" placeholder="E-Mail">
+                                </div>
+                                <div class=" form-popup">
+                                    <Label>City</Label>
+                                    <input asp-for="CityId" type="text" placeholder="Address">
+                                </div>
+                                <div class=" form-popup">
+                                    <Label>District</Label>
+                                    <input asp-for="DistrictId" type="text" placeholder="City">
+                                </div>
+
+                                <div class=" form-popup">
+                                    <Label>Address Description</Label>
+                                    <input asp-for="AddressDescription" type="text" placeholder="Country">
+                                </div>
+
+                                <div class=" form-popup">
+                                    <input asp-for="FirstName" type="hidden">
+                                </div>
+                                <div class=" form-popup">
+                                    <input asp-for="LastName" type="hidden">
+                                </div>
+                                <div class=" form-popup">
+                                    <input asp-for="IdentityNumber" type="hidden">
+                                </div>
+                                <div class=" form-popup">
+                                    <select hidden asp-for="Gender" asp-items="@Html.GetEnumSelectList<Gender>()">
+                                        <option selected="selected" value=""></option>
+                                    </select>
+                                </div>
+                                <div class=" form-popup">
+                                    <input asp-for="Job" type="hidden">
+                                </div>
+                                <div class=" form-popup">
+                                    <input asp-for="Title" type="hidden">
+                                </div>
+                                <div class=" form-popup">
+                                    <select hidden asp-for="BloodGroup" asp-items="@Html.GetEnumSelectList<BloodGroup>()">
+                                        <option selected="selected" value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" value="Edit Profile">Update</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
+

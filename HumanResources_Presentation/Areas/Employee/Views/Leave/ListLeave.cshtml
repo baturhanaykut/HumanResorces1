@@ -1,0 +1,167 @@
+﻿@model IEnumerable<LeaveVM>
+
+@{
+    Layout = "_LayoutEmployee";
+    int index = 1;
+}
+
+<div class="content container-fluid">
+
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 col-12">
+            <div class="breadcrumb-path mb-4 mt-4">
+                <ul class="breadcrumb">
+                    <h3>Leaves</h3>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 col-12 ">
+            <div class="row mb-4">
+                <div class="col-xl-3 col-sm-6 col-6">
+                    <div class="card board1 fill1 ">
+                        <div class="card-body">
+                            <div class="card_widget_img">
+                                <img src="~/media/image/leave.png" alt="card-img" width="70" height="70" />
+                            </div>
+                            <div class="card_widget_header">
+                                @*                                <label>Number Of Leaves</label>
+                                <h4>@Model.Count()</h4>*@
+                                <a asp-area="Employee" asp-controller="Leave" asp-action="CreateLeave" class="btn-add"><i data-feather="plus"></i> Add Leave</a>
+                            </div>
+                        </div>
+                        @*                        <a asp-area="Employee" asp-controller="Leave" asp-action="CreateLeave" class="btn-add"><i data-feather="plus"></i> Add Leave</a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="table-heading">
+                    <h2>Leave List</h2>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>@Html.DisplayNameFor(x=>x.RequestComments)</th>
+                                    <th>@Html.DisplayNameFor(x=>x.LeaveTypeName)</th>
+                                    <th>@Html.DisplayNameFor(x=>x.LeaveDay)</th>
+                                    <th>@Html.DisplayNameFor(x=>x.StartDate)</th>
+                                    <th>@Html.DisplayNameFor(x=>x.EndDate)</th>
+                                    <th>@Html.DisplayNameFor(x=>x.ApproveStatus)</th>
+                                    <th>@Html.DisplayNameFor(x=>x.ExecutiveName)</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            @foreach (var item in Model)
+                            {
+                                <input type="hidden" asp-for="@item.Id" />
+                                <tbody>
+                                    <tr>
+                                        <td><label>@index</label></td>
+                                        <td><label>@item.RequestComments </label> </td>
+                                        <td><label>@item.LeaveTypeName </label> </td>
+                                        <td><label>@item.LeaveDay </label> </td>
+                                        <td><label>@item.StartDate </label> </td>
+                                        <td><label>@item.EndDate </label> </td>
+                                        <td><label>@item.ApproveStatus </label></td>
+                                        <td><label>@item.ExecutiveName</label></td>
+
+                                        @if (item.ApproveStatus == ApproveStatus.InApproval)
+                                        {
+                                            <td>
+                                                <a asp-area="Employee" asp-controller="Leave" asp-action="EditLeave" asp-route-id="@item.Id">
+                                                    <button class="btn btn-warning">Edit<i data-feather="edit"></i></button>
+                                                </a>
+                                                <a data-bs-toggle="modal" data-bs-target="#delete" data-bs-whatever="@item.Id">
+                                                    <button class=" btn btn-danger">Delete<i data-feather="trash-2"></i></button>
+                                                </a>
+                                            </td>
+                                        }
+                                    </tr>
+                                </tbody>
+
+                                index++;
+                            }
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                @*Delete Expense Pop-Up:*@
+                <div class="customize_popup">
+                    <div class="modal fade"
+                         id="delete"
+                         tabindex="-1"
+                         aria-labelledby="staticBackdropLabels1"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header text-centers border-0">
+                                    <h5 class="modal-title text-center" id="staticBackdropLabels1">
+                                        Are You Sure Want to Delete This Leave?
+                                    </h5>
+                                </div>
+                                <div class="modal-footer text-centers">
+
+                                    <form asp-area="Employee" asp-action="Delete" asp-controller="Leave">
+                                        <input id="deleteLeaveInput" class="deleteLeave" type="hidden" name="id" />
+                                        <button id="Delete" type="submit" class="btn btn-primary">Delete</button>
+                                        <a asp-controller="Leave" asp-action="ListLeave" type="button" class="btn btn-secondary btn-lg">Cancel</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        var exampleModal = document.getElementById('delete')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+
+            var button = event.relatedTarget
+
+            var recipient = button.getAttribute('data-bs-whatever')
+
+            document.getElementById("deleteLeaveInput").value = recipient;
+
+        })
+    </script>
+
+
+    <script>
+
+        $(function () {
+
+            $("#example1").DataTable({
+
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+
+                "buttons": ["excel", "pdf", "colvis"]
+
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        });
+
+    </script>
+}
+
+

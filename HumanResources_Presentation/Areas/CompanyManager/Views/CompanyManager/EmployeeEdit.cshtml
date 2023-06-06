@@ -1,0 +1,282 @@
+﻿@using HumanResources_Domain.Enums;
+@model UpdateProfileDTO
+
+@{
+    Layout = "_LayoutEmployee";
+}
+
+
+
+<div class="content container-fluid">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 col-12">
+            <div class="breadcrumb-path mb-4">
+                <h3>Edit Employees</h3>
+            </div>
+        </div>
+
+        <div class="col-xl-12 col-sm-12 col-12">
+            <form asp-controller="CompanyManager" asp-action="EmployeeEdit" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-titles">
+                            General Information <span>Organized and secure.</span>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-6 col-sm-12 col-12 mb-2">
+                                @if (String.IsNullOrEmpty(Model.ImagePath))
+                                {
+                                    <div class="widget-user-image">
+                                        <img class="img-thumbnail" src="@Url.Content("~/media/image/businessman.png")" alt="User Avatar" height="75" width="75">
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="widget-user-image">
+                                        <img class="img-thumbnail" src="@Model.ImagePath" alt="User Avatar" height="150" width="150">
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+
+                        <input asp-for="Id" type="hidden" />
+                        <input asp-for="ImagePath" type="hidden" />
+
+                        <div class="row">
+                            <input type="hidden" asp-for="Id" />
+                            <span asp-validation-for="UploadPath" class="text-danger"></span>
+                            <div class="input-group col-xl-6 col-sm-12 col-12 mb-3">
+                                <input asp-for="UploadPath" type="file" class="form-control" placeholder="Upload Photo" style="height:70px; padding-inline-start :30px; padding-block:20px;">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-camera"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label asp-for="FirstName">First Name</label>
+                                    <input asp-for=FirstName type="text" placeholder="First Name" />
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label asp-for="LastName">Last Name</label>
+                                    <input asp-for="LastName" type="text" placeholder="Last Name" />
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label asp-for="IdentityNumber">Identity Number</label>
+                                    <input asp-for="IdentityNumber" type="text" placeholder="Identity Number" />
+                                    <span asp-validation-for="IdentityNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label asp-for="Email">E-Mail</label>
+                                    <input asp-for="Email" type="email" class="col-xl-12 col-sm-12 col-12 form-control" placeholder="Email" style="height:70px; padding-inline-start :30px" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-3 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label asp-for="BirthDate">Birth Date</label>
+                                    <input asp-for="BirthDate" type="date" class="col-xl-12 col-sm-6 col-12 form-control" placeholder="Birth Date" style="height:70px; padding-inline-start :30px" />
+                                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label asp-for="StartWorkDate">Start Work Date</label>
+                                    <input asp-for="StartWorkDate" type="date" class="col-xl-12 col-sm-6 col-12 form-control" placeholder="Start Work Date" style="height:70px; padding-inline-start :30px" />
+                                    <span asp-validation-for="StartWorkDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label asp-for="DepartmentId">Department</label>
+                                    <select asp-for="DepartmentId" class="custom-select" asp-items="@ViewBag.Departments">
+                                        <option value="">Please select a department </option>
+                                    </select>
+                                    <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label asp-for="Job">Job</label>
+                                    <input asp-for="Job" type="text" placeholder="Job" />
+                                    <span asp-validation-for="Job" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label asp-for="Title">Title</label>
+                                    <input asp-for="Title" type="text" placeholder="Title" />
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label asp-for="PhoneNumber">Phone Number</label>
+                                    <input asp-for="PhoneNumber" type="text" placeholder="Phone Number" />
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label asp-for="BloodGroup">Blood Group</label>
+                                    <select asp-for="BloodGroup" asp-items="@Html.GetEnumSelectList<BloodGroup>()">
+                                        <option value="">Please select a Blood Group </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <Label asp-for="CityId">@Html.DisplayNameFor(x=>x.CityId)</Label>
+                                    <select asp-for="CityId" class="custom-select" id="cityList" asp-items="@ViewBag.Cities">
+                                        <option value="0">Please select a city</option>
+                                    </select>
+                                    <span class="text-danger" asp-validation-for="CityId"></span>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label asp-for="DistrictId" class="form-label">@Html.DisplayNameFor(x=>x.DistrictId)</label>
+                                    <select asp-for="DistrictId" class="custom-select" id="districtList" asp-items="@ViewBag.Districts" disabled>
+                                        <option value="0">Please select a city firstly</option>
+                                    </select>
+                                    <span class="text-danger" asp-validation-for="DistrictId"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label asp-for="AddressDescription">Address Description</label>
+                                    <input asp-for="AddressDescription" type="text" placeholder="Address Description" />
+                                    <span asp-validation-for="AddressDescription" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-sm-12 col-12">
+                                <label asp-for="ExecutiveId" class="form-label">@Html.DisplayNameFor(x=>x.ExecutiveId)</label>
+                                <select asp-for="ExecutiveId" class="custom-select" asp-items="@ViewBag.Executive" style="height:70px; padding-inline-start :30px">
+                                    <option value="0">Please select a Executive</option>
+                                </select>
+                                <span class="text-danger" asp-validation-for="ExecutiveId"></span>
+                            </div>
+                            <div class="col-xl-6 col-sm-12 col-12">
+                                <label asp-for="Role" class="form-label">@Html.DisplayNameFor(x=>x.Role)</label>
+                                <div class="form-check">
+                                    <input asp-for="Role" class="form-check-input" type="radio" id="cpm" name="Role" value="CompanyManager">
+                                    <label asp-for="Role" class="form-check-label" for="cpm">Company Manager</label>
+                                </div>
+                                <div class="form-check">
+                                    <input asp-for="Role" class="form-check-input" type="radio" id="empl" name="Role" value="Employee">
+                                    <label asp-for="Role" class="form-check-label" for="empl">Employee</label>
+                                </div>
+                                <span class="text-danger" asp-validation-for="Role"></span>
+                                <div class="form-check">
+                                    <input asp-for="ExecutiveStatus" class="form-check-input" type="checkbox" id="ısexe" value="true">
+                                    <label asp-for="ExecutiveStatus" class="form-check-label" for="ısexe">Is Executive ?</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success w-auto">Update Employee</button>
+                <a asp-controller="CompanyManager" asp-action="Index" class="btn btn-warning w-auto">Cancel</a>
+                <input id="url" type="hidden" value="@(ViewBag.BaseUrl)" />
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-sm-12 col-12">
+                <div class="form-btn">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{
+
+
+
+    <script type="text/javascript">
+        $(function () {
+
+            $('#cityList').change(function () {
+
+                var cityId = $(this).val();
+                var baseUrl = $('#url').val();
+
+                if (cityId != null && cityId != '') {
+                    $.ajax({
+                        type: "GET",
+                        url: baseUrl + "/CompanyManager/CompanyManager/setDropDownList/" + cityId,
+                        datatype: "Json",
+                        success: function (districts) {
+
+                            $("#districtList").empty();
+                            //for (var i = 0; i <data.length; i++){
+                            //    $('#districtList2').append("<option value='" + data[i].Id + "'>" + data[i].Name + "</options>");
+                            //}
+                            $("#districtList").removeAttr("disabled");
+
+                            $.each(districts, function () {
+                                $('#districtList').append('<option value=' + this.id + '>' + this.name + '</option>');
+                            });
+                            //$.each(districts, function (index, district) {
+                            //        $('#districtList2').append($('<option/>', {
+                            //            value: district.Id,
+                            //            text: district.Name
+                            //        }));
+                            //    });
+                        },
+                        error: function () {
+                            /*Bu metod ile Ajax işlemi başarısız
+                            olursa eğer hata mesajı verebiliyoruz.*/
+                            alert("Hata");
+                        },
+                        beforeSend: function () {
+                            /*Burada ise Form Post edilmeden önce
+                            işlemler yapılabilir.Örnek olarak Loading, yükleniyor vs..*/
+                        },
+                        complete: function () {
+                            /*Burada ise Form Post edildikten sonra
+                            işlemler yapılabilir.Örnek olarak yükleme tamamlandı vs..*/
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

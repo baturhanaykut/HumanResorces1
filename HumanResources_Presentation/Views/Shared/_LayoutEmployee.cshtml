@@ -1,0 +1,416 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Human Resources</title>
+
+    <link rel="shortcut icon" href="~/media/image/logo3.png">
+    <link rel="stylesheet" href="~/media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/media/fontsawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="~/media/fontsawesome/all.min.css" />
+    <link rel="stylesheet" href="~/media/css/style.css" />
+    <link rel="stylesheet" href="~/media/css/select2.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/css/uikit.min.css" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="~/media2/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/media2/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/media2/css/buttons.bootstrap4.min.css">
+
+
+
+</head>
+<body>
+
+    @if (User.IsInRole("CompanyManager"))
+    {
+        <header>
+            <div class="header " style="background-color: #BDCDD6;">
+
+                <div class="header-left">
+                    @* <a href="index.html" class="logo">
+                <img src="~/media/image/HR.png" alt="Human Resources">
+                </a>*@
+
+                    <a asp-area="CompanyManager" asp-controller="CompanyManager" asp-action="IndexGrid" asp-route-UserName="@User.Identity.Name" class="logo">
+                        <img src="~/media/image/logo3.png" alt="Human Resources" width="70" height="70">
+                    </a>
+
+                    <a href="index.html" class="logo logo-small">
+                        <img src="~/media/image/logo3.png" alt="Logo" width="30" height="30">
+                    </a>
+
+                    <a href="javascript:void(0);" id="toggle_btn">
+                        <span class="bar-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </a>
+                </div>
+
+
+                @*Header Search area*@
+
+
+                <div class="top-nav-search">
+                    <form asp-action="Index" asp-controller="Search">
+                        <input name="employeename" type="text" class="form-control" placeholder="Search Employee">
+                        <button class="btn" type="submit" id="text"><i class="fa fa-search"></i></button>
+
+                    </form>
+                </div>
+
+
+                <a class="mobile_btn" id="mobile_btn">
+                    <i class="fas fa-bars"></i>
+                </a>
+                <ul class="nav user-menu">
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @*                    <li class="nav-item">
+                <a class="nav-link" asp-controller="Account" asp-action="ProfileDetails" asp-route-UserName="@User.Identity.Name"></a>
+                </li>*@
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="default" asp-controller="Account" asp-action="LogOut">Hello @((ViewBag.Employee).FullName), LogOut</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="default" asp-controller="Account" asp-action="Login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="default" asp-controller="Account" asp-action="Register">Register</a>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        </header>
+
+
+    }
+
+    @if (User.IsInRole("Employee"))
+    {
+
+        <header>
+            <div class="header" style="background-color: #E1EEDD;">
+
+                <div class="header-left">
+                    @*<a href="index.html" class="logo">
+                <img src="~/media/image/HR.png" alt="Human Resources">
+                </a>*@
+
+                    <a asp-area="Employee" asp-controller="Employee" asp-action="Index" asp-route-UserName="@User.Identity.Name" class="logo"><img src="~/media/image/logo3.png" alt="Human Resources" width="70" height="70"></a>
+
+                    <a href="index.html" class="logo logo-small">
+                        <img src="~/media/image/logo3.png" alt="Logo" width="30" height="30">
+                    </a>
+
+                    <a href="javascript:void(0);" id="toggle_btn">
+                        <span class="bar-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </a>
+                </div>
+
+
+                @*Header Search area*@
+                <div class="top-nav-search">
+                    <form asp-area="CompanyManager" asp-action="Index" asp-controller="Search">
+                        <input name="employeename" type="text" class="form-control" placeholder="Search Employee">
+                        <button class="btn" type="submit" id="text"><i class="fa fa-search"></i></button>
+
+                    </form>
+                </div>
+
+                <a class="mobile_btn" id="mobile_btn">
+                    <i class="fas fa-bars"></i>
+                </a>
+                <ul class="nav user-menu">
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @*                    <li class="nav-item">
+                <a class="nav-link" asp-controller="Account" asp-action="ProfileDetails" asp-route-UserName="@User.Identity.Name"></a>
+                </li>*@
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="default" asp-controller="Account" asp-action="LogOut">Hello @((ViewBag.Employee).FullName), LogOut</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="default" asp-controller="Account" asp-action="Login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="default" asp-controller="Account" asp-action="Register">Register</a>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        </header>
+    }
+
+    @if (User.IsInRole("SiteManager"))
+    {
+
+        <header>
+            <div class="header" style="background-color: #F1DEC9;">
+
+                <div class="header-left">
+                    @*<a href="index.html" class="logo">
+                <img src="~/media/image/HR.png" alt="Human Resources">
+                </a>*@
+
+                    <a asp-area="SiteManager" asp-controller="Company" asp-action="Index" asp-route-UserName="@User.Identity.Name" class="logo"><img src="~/media/image/logo3.png" alt="Human Resources" width="70" height="70"></a>
+
+                    <a href="index.html" class="logo logo-small">
+                        <img src="~/media/image/logo3.png" alt="Logo" width="30" height="30">
+                    </a>
+
+                    <a href="javascript:void(0);" id="toggle_btn">
+                        <span class="bar-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </a>
+                </div>
+
+
+                @*Header Search area*@
+                @*@if (User.IsInRole("CompanyManager"))
+            {
+            <div class="top-nav-search">
+            <form asp-action="Index" asp-controller="Search">
+            <input name="employeename" type="text" class="form-control" placeholder="Search Employee">
+            <button class="btn" type="submit" id="text"><i class="fa fa-search"></i></button>
+
+            </form>
+            </div>
+            }*@
+
+                <a class="mobile_btn" id="mobile_btn">
+                    <i class="fas fa-bars"></i>
+                </a>
+                <ul class="nav user-menu">
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @*                    <li class="nav-item">
+                <a class="nav-link" asp-controller="Account" asp-action="ProfileDetails" asp-route-UserName="@User.Identity.Name"></a>
+                </li>*@
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="default" asp-controller="Account" asp-action="LogOut">Hello @((ViewBag.Employee).FullName), LogOut</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="default" asp-controller="Account" asp-action="Login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="default" asp-controller="Account" asp-action="Register">Register</a>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        </header>
+    }
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-inner slimscroll">
+            <div class="sidebar-contents">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @if (User.IsInRole("Employee") || User.IsInRole("CompanyManager"))
+                            {
+                                @if (User.IsInRole("Employee"))
+                                {
+                                    <li>
+                                        <a asp-area="Employee" asp-controller="Employee" asp-action="Index" asp-route-UserName="@User.Identity.Name"><img src="~/media/image/home.svg" alt="sidebar_img"> <span>Home</span></a>
+                                    </li>
+
+
+                                    <li>
+                                        <a asp-area="Employee" asp-controller="Employee" asp-action="Edit" asp-route-UserName="@User.Identity.Name"><img src="~/media/image/profile.svg" alt="sidebar_img"> <span>My Profile</span></a>
+                                    </li>
+
+                                    <li>
+                                        <a asp-area="Employee" asp-controller="Employee" asp-action="ListEmployees"><img src="~/media/image/employee.svg" alt="sidebar_img"><span> Employees</span></a>
+                                    </li>
+
+                                    if ((ViewBag.Employee).ExecutiveStatus)
+                                    {
+                                        <li>
+                                            <a asp-area="Employee" asp-controller="EmployeeRequest" asp-action="Advance"><img src="~/media/image/employeerequest.png" alt="sidebar_img"><span> Employee Request</span></a>
+                                        </li>
+                                    }
+                                }
+
+                                @if (User.IsInRole("CompanyManager"))
+                                {
+                                    <li>
+                                        <a asp-area="CompanyManager" asp-controller="CompanyManager" asp-action="IndexGrid" asp-route-UserName="@User.Identity.Name"><img src="~/media/image/home.svg" alt="sidebar_img"> <span>Home</span></a>
+                                    </li>
+
+                                    <li>
+                                        <a asp-area="CompanyManager" asp-controller="CompanyManager" asp-action="Edit" asp-route-UserName="@User.Identity.Name"><img src="~/media/image/profile.svg" alt="sidebar_img"> <span>My Profile</span></a>
+                                    </li>
+
+                                    <li>
+                                        <a asp-area="CompanyManager" asp-controller="CompanyManager" asp-action="Index"><img src="~/media/image/employee.svg" alt="sidebar_img"><span> Employees</span></a>
+                                    </li>
+
+                                    <li>
+                                        <a asp-area="CompanyManager" asp-controller="EmployeeRequest" asp-action="Index_Advances"><img src="~/media/image/employeerequest.png" alt="sidebar_img"><span> Employee Request</span></a>
+                                    </li>
+
+                                    <li>
+                                        <a asp-area="CompanyManager" asp-controller="Company" asp-action="Index"><img src="~/media/image/company.svg" alt="sidebar_img"><span> Company</span></a>
+                                    </li>
+
+                                    <li>
+                                        <a asp-area="CompanyManager" asp-controller="CompanyManager" asp-action="Reports">
+                                            <img src="~/media/image/report.svg" alt="sidebar_img"><span>Reports</span>
+
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a asp-area="CompanyManager" asp-controller="ExpenseType" asp-action="ListExpenseType"><img src="~/media/image/company.svg" alt="sidebar_img"><span>Settings</span></a>
+                                    </li>
+
+                                }
+
+                                <li>
+                                    <a asp-area="Employee" asp-controller="Advance" asp-action="ListAdvance" asp-route-UserName="@User.Identity.Name"><img src="~/media/image/advance.png" alt="sidebar_img"><span> Advances</span></a>
+                                </li>
+
+
+                                <li>
+                                    <a asp-area="Employee" asp-controller="Expense" asp-action="ListExpense" asp-route-UserName="@User.Identity.Name"><img src="~/media/image/expense.png" alt="sidebar_img"><span> Expenses</span></a>
+                                </li>
+
+
+                                <li>
+                                    <a asp-area="Employee" asp-controller="Leave" asp-action="ListLeave" asp-route-UserName="@User.Identity.Name"><img src="~/media/image/leave.svg" alt="sidebar_img"><span> Leaves</span></a>
+                                </li>
+
+                            }
+
+                            else if (User.IsInRole("SiteManager"))
+                            {
+                                <li>
+                                    <a asp-area="SiteManager" asp-controller="Company" asp-action="Index" asp-route-UserName="@User.Identity.Name"><img src="~/media/image/home.svg" alt="sidebar_img"> <span>Home</span></a>
+                                </li>
+
+                                <li>
+                                    <a asp-area="SiteManager" asp-controller="Company" asp-action="CompanyStatus"><img src="~/media/image/company.svg" alt="sidebar_img"><span> Company Request</span></a>
+                                </li>
+                            }
+
+
+                        }
+                        else
+                        {
+                            <li>
+                                <a asp-controller="Account" asp-action="Login"><img src="~/media/image/profile.svg" alt="sidebar_img"> <span>Profile</span></a>
+                            </li>
+
+                        }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page-wrapper">
+        <main role="main" class="pb-3">
+            <partial name="_Notification" />
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+    </footer>
+
+
+
+    <script src="~/media/js/jquery-3.6.0.min.js"></script>
+    <script src="~/media/js/popper.min.js"></script>
+    <script src="~/media/js/bootstrap.min.js"></script>
+    <script src="~/media/js/feather.min.js"></script>
+    <script src="~/media/js/jquery.slimscroll.min.js"></script>
+    <script src="~/media/js/apexcharts.min.js"></script>"
+    <script src="~/media/js/apexchart/chart-data.js"></script>
+    <script src="~/media/js/script.js"></script>
+    <script src="~/media/js/select2.min.js"></script>
+    <script src="https://kit.fontawesome.com/e9795d1447.js" crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+    <script src="~/media2/js/jquery.dataTables.min.js"></script>
+
+    <script src="~/media2/js/dataTables.bootstrap4.min.js"></script>
+
+    <script src="~/media2/js/dataTables.responsive.min.js"></script>
+
+    <script src="~/media2/js/responsive.bootstrap4.min.js"></script>
+
+    <script src="~/media2/js/dataTables.buttons.min.js"></script>
+
+    <script src="~/media2/js/buttons.bootstrap4.min.js"></script>
+
+    <script src="~/media2/js/jszip.min.js"></script>
+
+    <script src="~/media2/js/pdfmake.min.js"></script>
+
+    <script src="~/media2/js/vfs_fonts.js"></script>
+
+    <script src="~/media2/js/buttons.html5.min.js"></script>
+
+    <script src="~/media2/js/buttons.print.min.js"></script>
+
+    <script src="~/media2/js/buttons.colVis.min.js"></script>
+
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+
+@section scripts{
+
+    <script>
+        $(function () {
+            $("#text").click(function () {
+                $("Form").submit();
+            })
+        });
+    </script>
+
+
+}
