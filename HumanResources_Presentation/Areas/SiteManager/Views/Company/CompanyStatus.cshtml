@@ -46,7 +46,7 @@
                                     <td>
                                         @if (item.Status == Status.AwatingApproval || item.Status == Status.Passive)
                                         {
-                                            <a asp-area="SiteManager" asp-controller="Company" asp-action="AktiveCompany" asp-route-Id="@item.Id"><button class="btn btn-warning ">Aktive Company</button></a>
+                                            <a asp-area="SiteManager" asp-controller="Company" asp-action="AktiveCompany" asp-route-Id="@item.Id"><button class="btn btn-warning ">Active Company</button></a>
                                         }
                                         else 
                                         {

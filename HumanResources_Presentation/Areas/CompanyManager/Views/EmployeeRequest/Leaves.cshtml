@@ -77,53 +77,7 @@
                                         }
                                     </td>
                                 </tr>
-                                <div class="customize_popup">
-                                    <div class="modal fade"
-                                         id="approve"
-                                         tabindex="-1"
-                                         aria-labelledby="staticBackdropLabels1"
-                                         aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header text-centers border-0">
-                                                    <h5 class="modal-title text-center" id="staticBackdropLabels1">
-                                                        Are You Sure Approve to Leave?
-                                                    </h5>
-                                                </div>
-                                                <div class="modal-footer text-centers">
 
-                                                    <form asp-controller="EmployeeRequest" asp-action="AcceptLeave" asp-route-Id="@item.Id">
-                                                        <button id="Approve" type="submit" class="btn btn-primary">Approve</button>
-                                                        <a asp-controller="EmployeeRequest" asp-action="Leaves" type="button" class="btn btn-secondary btn-lg">Cancel</a>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="customize_popup">
-                                    <div class="modal fade"
-                                         id="reject"
-                                         tabindex="-1"
-                                         aria-labelledby="staticBackdropLabels1"
-                                         aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header text-centers border-0">
-                                                    <h5 class="modal-title text-center" id="staticBackdropLabels1">
-                                                        Are You Sure Reject to Leave?
-                                                    </h5>
-                                                </div>
-                                                <div class="modal-footer text-centers">
-                                                    <form asp-controller="EmployeeRequest" asp-action="RejectLeave" asp-route-Id="@item.Id">
-                                                        <button id="approve" type="submit" class="btn btn-primary">Reject</button>
-                                                        <a asp-controller="EmployeeRequest" asp-action="Leaves" type="button" class="btn btn-secondary btn-lg">Cancel</a>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 index++;
                             }
                         </tbody>
@@ -136,7 +90,77 @@
 
 </body>
 
+<div class="customize_popup">
+    <div class="modal fade"
+         id="approve"
+         tabindex="-1"
+         aria-labelledby="staticBackdropLabels1"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header text-centers border-0">
+                    <h5 class="modal-title text-center" id="staticBackdropLabels1">
+                        Are You Sure Approve to Leave?
+                    </h5>
+                </div>
+                <div class="modal-footer text-centers">
+
+                    <form asp-controller="EmployeeRequest" asp-action="AcceptLeave">
+                        <input id="approveLeavesInput" type="hidden" name="id" />
+                        <button id="Approve" type="submit" class="btn btn-primary">Approve</button>
+                        <a asp-controller="EmployeeRequest" asp-action="Leaves" type="button" class="btn btn-secondary btn-lg">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="customize_popup">
+    <div class="modal fade"
+         id="reject"
+         tabindex="-1"
+         aria-labelledby="staticBackdropLabels1"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header text-centers border-0">
+                    <h5 class="modal-title text-center" id="staticBackdropLabels1">
+                        Are You Sure Reject to Leave?
+                    </h5>
+                </div>
+                <div class="modal-footer text-centers">
+                    <form asp-controller="EmployeeRequest" asp-action="RejectLeave">
+                        <input id="rejectLeavesInput" type="hidden" name="id" />
+                        <button id="approve" type="submit" class="btn btn-primary">Reject</button>
+                        <a asp-controller="EmployeeRequest" asp-action="Leaves" type="button" class="btn btn-secondary btn-lg">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section scripts {
+
+    <script>
+        var exampleModal = document.getElementById('approve')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget
+            var recipient = button.getAttribute('data-bs-whatever')
+            document.getElementById("approveLeavesInput").value = recipient;
+        })
+    </script>
+
+    <script>
+        var exampleModal = document.getElementById('reject')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget
+            var recipient = button.getAttribute('data-bs-whatever')
+            document.getElementById("rejectLeavesInput").value = recipient;
+        })
+    </script>
+
     <script>
 
         $(function () {
@@ -145,7 +169,23 @@
 
                 "responsive": true, "lengthChange": false, "autoWidth": false,
 
-                "buttons": ["excel", "pdf"]
+                buttons: [
+                    {
+                        extend: 'excel',
+                        footer: true,
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        footer: false,
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        }
+
+                    }
+                ]
 
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 

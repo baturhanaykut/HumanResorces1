@@ -216,6 +216,7 @@ namespace HumanResources_Application.Service.LeaveServices
 
 
         }
+
         public async Task<List<LeaveVM>> GetLeavesManagerAwatingApproval(Guid? id)
         {
             List<LeaveVM> leaves = (List<LeaveVM>)await _leaveRequestRepository.GetFilteredList(

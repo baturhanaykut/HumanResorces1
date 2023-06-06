@@ -20,10 +20,6 @@
         </div>
     </div>
 
-    <div>
-        <ul></ul>
-    </div>
-
     <div class="col-xl-12 col-sm-12 col-12 mb-4">
         <div class="head-link-set">
             <ul>
@@ -56,7 +52,7 @@
         <div class="col-xl-12 col-sm-12 col-12 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped text-center" >
+                    <table id="example2" class="table table-bordered table-striped text-center">
                         <thead>
                             <tr>
 
@@ -76,8 +72,8 @@
                                         <a asp-area="CompanyManager" asp-controller="ExpenseType" asp-action="ExpenseTypeEdit" asp-route-id="@item.Id">
                                             <button class="btn btn-warning">Edit<i data-feather="edit"></i></button>
                                         </a>
-                                        <a  data-bs-toggle="modal" data-bs-target="#delete" data-bs-whatever="@item.Id">
-                                          <button class=" btn btn-danger">Delete<i data-feather="trash-2"></i></button>
+                                        <a data-bs-toggle="modal" data-bs-target="#delete" data-bs-whatever="@item.Id">
+                                            <button class=" btn btn-danger">Delete<i data-feather="trash-2"></i></button>
                                         </a>
                                     </td>
 
@@ -120,37 +116,49 @@
 
 
     </div>
+</div>
 
 
-    @section Scripts{
-        <script>
-            var exampleModal = document.getElementById('delete')
-            exampleModal.addEventListener('show.bs.modal', function (event) {
+@section Scripts{
+    <script>
+        var exampleModal = document.getElementById('delete')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
 
-                var button = event.relatedTarget
+            var button = event.relatedTarget
 
-                var recipient = button.getAttribute('data-bs-whatever')
+            var recipient = button.getAttribute('data-bs-whatever')
 
-                document.getElementById("deleteExpenseTypeInput").value = recipient;
+            document.getElementById("deleteExpenseTypeInput").value = recipient;
 
-            })
+        })
 
-        </script>
+    </script>
+    <script>
 
-        <script>
+        $(function () {
 
-            $(function () {
 
-                $("#example1").DataTable({
+            $('#example2').DataTable({
 
-                    "responsive": true, "lengthChange": false, "autoWidth": false,
+                "paging": true,
 
-                    //"buttons": ["excel", "pdf"]
+                "lengthChange": false,
 
-                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+                "searching": false,
+
+                "ordering": false,
+
+                "info": true,
+
+                "autoWidth": false,
+
+                "responsive": true,
+
             });
 
-        </script>
+        });
+
+    </script>
     }
 
 

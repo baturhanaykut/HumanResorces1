@@ -28,7 +28,7 @@ namespace HumanResources_Infrastructure.EntityTypeConfig
 
             builder.HasData(
                          new Department() { Id = 1, Name = "Human Resources", Status = Status.Active, CreateDate = DateTime.Now },
-                         new Department() { Id = 2, Name = "information technologies", Status = Status.Active, CreateDate = DateTime.Now },
+                         new Department() { Id = 2, Name = "Information Technologies", Status = Status.Active, CreateDate = DateTime.Now },
                          new Department() { Id = 3, Name = "Quality Assurance", Status = Status.Active, CreateDate = DateTime.Now },
                          new Department() { Id = 4, Name = "Accounting", Status = Status.Active, CreateDate = DateTime.Now },
                          new Department() { Id = 5, Name = "Quality Control", Status = Status.Active, CreateDate = DateTime.Now },

@@ -22,13 +22,6 @@ namespace HumanResources_Infrastructure.EntityTypeConfig
             builder.Property(x => x.DefaultDays)
                .IsRequired(true);
 
-            builder.HasData(
-                        new LeaveType() { Id = 1, LeaveTypeName = "Annual Leave", Status = Status.Active, CreateDate = DateTime.Now, DefaultDays = 14 },
-                        new LeaveType() { Id = 2, LeaveTypeName = "Maternity Leave", Status = Status.Active, CreateDate = DateTime.Now, DefaultDays = 180 },
-                        new LeaveType() { Id = 3, LeaveTypeName = "Paternity Leave", Status = Status.Active, CreateDate = DateTime.Now, DefaultDays = 14 }
-
-             );
-
             base.Configure(builder);
         }
     }

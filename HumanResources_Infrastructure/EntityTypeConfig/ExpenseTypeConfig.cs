@@ -19,14 +19,6 @@ namespace HumanResources_Infrastructure.EntityTypeConfig
                .IsRequired(true)
                .HasMaxLength(50);
 
-
-            builder.HasData(
-                        new ExpenseType() { Id = 1, ExpenseTypeName = "Parking Expense", Status = Status.Active, CreateDate = DateTime.Now },
-                        new ExpenseType() { Id = 2, ExpenseTypeName = "Food Expense", Status = Status.Active, CreateDate = DateTime.Now },
-                        new ExpenseType() { Id = 3, ExpenseTypeName = "Clothes Expense", Status = Status.Active, CreateDate = DateTime.Now },
-                        new ExpenseType() { Id = 4, ExpenseTypeName = "Stationary Expense", Status = Status.Active, CreateDate = DateTime.Now }
-             );
-
             base.Configure(builder);
         }
     }
