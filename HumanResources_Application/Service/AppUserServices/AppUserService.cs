@@ -70,7 +70,7 @@ namespace HumanResources_Application.Service.AppUserServices
                     FullName = x.FullName,
                     ExecutiveId = x.ExecutiveId,
                     ExecutiveName = x.Executive.FullName,
-
+                    ExecutiveStatus = (bool)x.ExecutiveStatus,
                 },
                 where: x => x.UserName == userName,
                 orderby: null,
@@ -128,6 +128,7 @@ namespace HumanResources_Application.Service.AppUserServices
             user.UserName = user.Email;
             user.CompanyId = company.Id;
             user.Status = Status.AwatingApproval;
+            user.ExecutiveStatus = false;
 
 
             if (model.Password == model.ConfirmPassword)

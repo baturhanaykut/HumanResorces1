@@ -42,7 +42,7 @@ namespace HumanResources_Domain.Entities
 
         public Guid? ExecutiveId { get; set; } // Yönetici Eklemek İçin yazıldı.
 
-        public bool? ExecutiveStatus { get; set; }
+        public bool ExecutiveStatus { get; set; }
 
         public Guid? CompanyId { get; set; }
 

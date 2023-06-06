@@ -67,7 +67,7 @@
                                     <td>
                                         @if (item.ApproveStatus == ApproveStatus.InApproval)
                                         {
-                                           
+
                                             <a class="" data-bs-toggle="modal" data-bs-target="#approve" data-bs-whatever="@item.Id">
                                                 <button class="btn btn-warning">Approve<i data-feather="edit"></i></button>
                                             </a>
@@ -79,54 +79,7 @@
 
                                     </td>
                                 </tr>
-                                <div class="customize_popup">
-                                    <div class="modal fade"
-                                         id="approve"
-                                         tabindex="-1"
-                                         aria-labelledby="staticBackdropLabels1"
-                                         aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header text-centers border-0">
-                                                    <h5 class="modal-title text-center" id="staticBackdropLabels1">
-                                                        Are You Sure Approve to Advance?
-                                                    </h5>
-                                                </div>
-                                                <div class="modal-footer text-centers">
-
-                                                    <form asp-controller="EmployeeRequest" asp-action="AcceptAdvance" asp-route-Id="@item.Id">
-                                                        <button id="Approve" type="submit" class="btn btn-primary">Approve</button>
-                                                        <a asp-controller="EmployeeRequest" asp-action="Index_Advances" type="button" class="btn btn-secondary btn-lg">Cancel</a>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="customize_popup">
-                                    <div class="modal fade"
-                                         id="reject"
-                                         tabindex="-1"
-                                         aria-labelledby="staticBackdropLabels1"
-                                         aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header text-centers border-0">
-                                                    <h5 class="modal-title text-center" id="staticBackdropLabels1">
-                                                        Are You Sure Reject to Advance?
-                                                    </h5>
-                                                </div>
-                                                <div class="modal-footer text-centers">
-                                                    <form asp-controller="EmployeeRequest" asp-action="RejectAdvance" asp-route-Id="@item.Id">
-                                                        <button id="approve" type="submit" class="btn btn-primary">Reject</button>
-                                                        <a asp-controller="EmployeeRequest" asp-action="Index_Advances" type="button" class="btn btn-secondary btn-lg">Cancel</a>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                index++;
+                                index ++;
                             }
                         </tbody>
                     </table>
@@ -136,10 +89,80 @@
         </div>
     </div>
 
-
 </body>
 
+    <div class="customize_popup">
+        <div class="modal fade"
+             id="approve"
+             tabindex="-1"
+             aria-labelledby="staticBackdropLabels1"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header text-centers border-0">
+                        <h5 class="modal-title text-center" id="staticBackdropLabels1">
+                            Are You Sure Approve to Advance?
+                        </h5>
+                    </div>
+                    <div class="modal-footer text-centers">
+
+                        <form asp-controller="EmployeeRequest" asp-action="AcceptAdvance">
+                            <input id="approveAdvanceInput" type="hidden" name="id" />
+                            <button id="Approve" type="submit" class="btn btn-primary">Approve</button>
+                            <a asp-controller="EmployeeRequest" asp-action="Index_Advances" type="button" class="btn btn-secondary btn-lg">Cancel</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="customize_popup">
+        <div class="modal fade"
+             id="reject"
+             tabindex="-1"
+             aria-labelledby="staticBackdropLabels1"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header text-centers border-0">
+                        <h5 class="modal-title text-center" id="staticBackdropLabels1">
+                            Are You Sure Reject to Advance?
+                        </h5>
+                    </div>
+                    <div class="modal-footer text-centers">
+                        <form asp-controller="EmployeeRequest" asp-action="RejectAdvance">
+                            <input id="rejectAdvanceInput" type="hidden" name="id" />
+                            <button id="approve" type="submit" class="btn btn-primary">Reject</button>
+                            <a asp-controller="EmployeeRequest" asp-action="Index_Advances" type="button" class="btn btn-secondary btn-lg">Cancel</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 @section scripts {
+
+    <script>
+        var exampleModal = document.getElementById('approve')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget
+            var recipient = button.getAttribute('data-bs-whatever')
+            document.getElementById("approveAdvanceInput").value = recipient;
+        })
+    </script>
+
+    <script>
+        var exampleModal = document.getElementById('reject')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget
+            var recipient = button.getAttribute('data-bs-whatever')
+            document.getElementById("rejectAdvanceInput").value = recipient;
+        })
+    </script>
+
     <script>
 
         $(function () {
@@ -148,7 +171,23 @@
 
                 "responsive": true, "lengthChange": false, "autoWidth": false,
 
-                "buttons": ["excel", "pdf"]
+                 buttons: [
+                    {
+                        extend: 'excel',
+                        footer: true,
+                        exportOptions: {
+                            columns: [0, 1, 2, 3,4,5,6]
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        footer: false,
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6]
+                        }
+
+                    }
+                ]
 
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });

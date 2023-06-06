@@ -68,7 +68,8 @@ namespace HumanResources_Infrastructure.SeedData
                         StartWorkDate = DateTime.Now,
                         BirthDate = DateTime.Now,
                         CompanyId = company.Id,
-                        EmailConfirmed = true
+                        EmailConfirmed = true,
+                        ExecutiveStatus = false
 
                     };
 
@@ -114,7 +115,8 @@ namespace HumanResources_Infrastructure.SeedData
                         BirthDate = DateTime.Now,
                         CompanyId = company.Id,
                         ExecutiveId = companyManagerUser.ExecutiveId,
-                        EmailConfirmed = true
+                        EmailConfirmed = true,
+                        ExecutiveStatus = false
                     };
 
                     var hashedEmployee = passwordHasher.HashPassword(employeeUser, "1234");
@@ -150,8 +152,9 @@ namespace HumanResources_Infrastructure.SeedData
                         CreateDate = DateTime.Now,
                         StartWorkDate = DateTime.Now,
                         BirthDate = DateTime.Now,
-                        EmailConfirmed=true
-                        
+                        EmailConfirmed=true,
+                        ExecutiveStatus = false
+
                     };
 
                     var hashedSiteManager = passwordHasher.HashPassword(siteManagerUser, "1234");

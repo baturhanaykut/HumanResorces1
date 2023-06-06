@@ -17,6 +17,20 @@
         <div class="col-xl-12 col-sm-12 col-12">
             <form asp-controller="Employee" asp-action="Edit" method="post" enctype="multipart/form-data">
                 <input type="hidden" asp-for="Id" />
+                <input asp-for="FirstName" type="hidden" />
+                <input asp-for="LastName" type="hidden" />
+                <input asp-for="IdentityNumber" type="hidden" />
+                <input asp-for="BirthDate" type="hidden" />
+                <input asp-for="StartWorkDate" type="hidden" />
+                <input asp-for="ImagePath" type="hidden" />
+                <input asp-for="DepartmentId" type="hidden" />
+                <input asp-for="StartWorkDate" type="hidden" />
+                <input asp-for="Title" type="hidden" />
+                <input asp-for="ExecutiveId" type="hidden" />
+                <input asp-for="ExecutiveStatus" type="hidden" />
+                <input asp-for="Role" type="hidden" />
+
+
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-titles">
@@ -42,19 +56,12 @@
                             </div>
                         </div>
 
-                        <input asp-for="Id" type="hidden" />
-                        <input asp-for="ImagePath" type="hidden" />
-                        <input asp-for="DepartmentId" type="hidden" />
-                        <input asp-for="StartWorkDate" type="hidden" />
-                        <input asp-for="Title" type="hidden" />
-                        <input asp-for="ExecutiveId" type="hidden" />
-                       
 
                         <div class="row">
                             <input type="hidden" asp-for="Id" />
                             <span asp-validation-for="UploadPath" class="text-danger"></span>
                             <div class="input-group col-xl-6 col-sm-12 col-12 mb-3">
-                                <input asp-for="UploadPath" type="file" class="form-control" placeholder="Upload Photo" style="height:70px; padding-inline-start :30px; padding-block:20px;" >
+                                <input asp-for="UploadPath" type="file" class="form-control" placeholder="Upload Photo" style="height:70px; padding-inline-start :30px; padding-block:20px;">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         <span class="fas fa-camera"></span>
@@ -66,14 +73,14 @@
                             <div class="col-xl-6 col-sm-12 col-12">
                                 <div class="form-group">
                                     <label asp-for="FirstName">First Name</label>
-                                    <input asp-for=FirstName type="text" placeholder="First Name" disabled />
+                                    <input asp-for="FirstName" type="text" placeholder="First Name" disabled />
                                     <span asp-validation-for="FirstName" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-sm-12 col-12">
                                 <div class="form-group">
                                     <label asp-for="LastName">Last Name</label>
-                                    <input asp-for="LastName" type="text" placeholder="Last Name" />
+                                    <input asp-for="LastName" type="text" placeholder="Last Name" disabled />
                                     <span asp-validation-for="LastName" class="text-danger"></span>
                                 </div>
                             </div>
@@ -199,13 +206,13 @@
                             </div>
                             <div class="col-xl-6 col-sm-12 col-12">
                                 <label asp-for="ExecutiveId" class="form-label">@Html.DisplayNameFor(x=>x.ExecutiveId)</label>
-                                <select asp-for="ExecutiveId" class="custom-select" asp-items="@ViewBag.Executive" style="height:70px; padding-inline-start :30px" disabled >
+                                <select asp-for="ExecutiveId" class="custom-select" asp-items="@ViewBag.Executive" style="height:70px; padding-inline-start :30px" disabled>
                                     <option value="">Please select a Executive</option>
                                 </select>
                                 <span class="text-danger" asp-validation-for="ExecutiveId"></span>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
                 <button type="submit" class="btn btn-success w-auto">Update Employee</button>
@@ -280,6 +287,6 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-}
+    }
 
 

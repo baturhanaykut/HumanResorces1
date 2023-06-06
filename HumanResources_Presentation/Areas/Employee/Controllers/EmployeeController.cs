@@ -50,9 +50,9 @@ namespace HumanResources_Presentation.Areas.Employee.Controllers
             Guid? companyId = await _companyServices.GetCompanyId(User.Identity.Name);
 
             List<EmployeeVM> employee1 = await _appUserService.GetEmployees(companyId);
-            List<AdvanceVM> advance = await _advanceService.GetAdvances(employee.Id);
-            List<ExpenseVM> expense = await _expenseService.GetExpensesEmployee(employee.Id);
-            List<LeaveVM> leave = await _leaveService.GetLeaveEmployee(employee.Id);
+            List<AdvanceVM> advance = await _advanceService.GetAdvancesManagerAwatingApproval(employee.Id);
+            List<ExpenseVM> expense = await _expenseService.GetExpensesManagerAwatingApproval(employee.Id);
+            List<LeaveVM> leave = await _leaveService.GetLeavesManagerAwatingApproval(employee.Id);
 
             ViewBag.EmployeeCount = employee1.Count();
             ViewBag.AdvanceCount = advance.Count();
